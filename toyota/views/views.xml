@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="toyota.list">
+      <field name="name">Toyota list</field>
+      <field name="model">toyota.toyota</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="toyota.action_window">
+      <field name="name">Toyota window</field>
+      <field name="res_model">toyota.toyota</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="toyota.action_server">
+      <field name="name">Toyota server</field>
+      <field name="model_id" ref="model_toyota_toyota"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="Toyota" id="toyota.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="toyota.menu_1" parent="toyota.menu_root"/>
+    <menuitem name="Menu 2" id="toyota.menu_2" parent="toyota.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="toyota.menu_1_list" parent="toyota.menu_1"
+              action="toyota.action_window"/>
+    <menuitem name="Server to list" id="toyota" parent="toyota.menu_2"
+              action="toyota.action_server"/>
+    -->
+  </data>
+</odoo>

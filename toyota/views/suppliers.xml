@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="toyota.list_suppliers">
+      <field name="name">Suppliers list</field>
+      <field name="model">toyota.suppliers</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nif"/>
+          <field name="name"/>
+          <field name="direction"/>
+          <field name="telephone"/>
+          <field name="models_ids"/>
+          <field name="accessories_ids"/>
+          <field name="spares_ids"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="toyota.action_window_suppliers">
+      <field name="name">Suppliers window</field>
+      <field name="res_model">toyota.suppliers</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="toyota.action_server">
+      <field name="name">Toyota server</field>
+      <field name="model_id" ref="model_toyota_toyota"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- menu categories -->
+    
+    <menuitem name="Suppliers" id="toyota.menu_suppliers" parent="toyota.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="List Suppliers" id="toyota.menu_suppliers_list" parent="toyota.menu_suppliers"
+              action="toyota.action_window_suppliers"/>
+   
+  </data>
+</odoo>

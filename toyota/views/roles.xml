@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="toyota.list_roles">
+      <field name="name">Roles list</field>
+      <field name="model">toyota.roles</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="role"/>
+          <field name="user_id"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="toyota.action_window_roles">
+      <field name="name">Roles window</field>
+      <field name="res_model">toyota.roles</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="toyota.action_server">
+      <field name="name">Toyota server</field>
+      <field name="model_id" ref="model_toyota_toyota"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Roles" id="toyota.menu_roles" parent="toyota.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="List Roles" id="toyota.menu_roles_list" parent="toyota.menu_roles"
+              action="toyota.action_window_roles"/>
+   
+  </data>
+</odoo>

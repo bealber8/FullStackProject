@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="toyota.list_spares">
+      <field name="name">Spares list</field>
+      <field name="model">toyota.spares</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="category"/>
+          <field name="name"/>
+          <field name="reference"/>
+          <field name="car_dealership_id"/>
+          <field name="suppliers_ids"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="toyota.action_window_spares">
+      <field name="name">Spares window</field>
+      <field name="res_model">toyota.spares</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="toyota.action_server">
+      <field name="name">Toyota server</field>
+      <field name="model_id" ref="model_toyota_toyota"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- menu categories -->
+    
+    <menuitem name="Spares" id="toyota.menu_spares" parent="toyota.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="List Spares" id="toyota.menu_spares_list" parent="toyota.menu_spares"
+              action="toyota.action_window_spares"/>
+   
+  </data>
+</odoo>

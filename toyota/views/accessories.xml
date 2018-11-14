@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="toyota.list_accessories">
+      <field name="name">Accessories list</field>
+      <field name="model">toyota.accessories</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="category"/>
+          <field name="name"/>
+          <field name="car_dealership_id"/>
+          <field name="suppliers_ids"/>
+        </tree>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="toyota.action_window_accessories">
+      <field name="name">Accessories window</field>
+      <field name="res_model">toyota.accessories</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="toyota.action_server">
+      <field name="name">Toyota server</field>
+      <field name="model_id" ref="model_toyota_toyota"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- menu categories -->
+    
+    <menuitem name="Accessories" id="toyota.menu_accessories" parent="toyota.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="List Accessories" id="toyota.menu_accessories_list" parent="toyota.menu_accessories"
+              action="toyota.action_window_accessories"/>
+   
+  </data>
+</odoo>
