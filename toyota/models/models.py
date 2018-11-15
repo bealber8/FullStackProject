@@ -24,7 +24,7 @@ class Suppliers(models.Model):
 
     nif = fields.Char()
     name = fields.Char()
-    direction = fields.Integer()
+    direction = fields.Char()
     telephone = fields.Char()
     models_ids = fields.Many2many('toyota.models')
     accessories_ids = fields.Many2many('toyota.accessories')
@@ -63,6 +63,7 @@ class FutureModels(models.Model):
     name = fields.Char()
     description = fields.Text()
     car_dealership_id = fields.Many2one('toyota.cardealership', string="Car Dealership")
+    image = fields.Binary(string = "Upload model")
 
 class MythicalModels(models.Model):
     _name = 'toyota.mythicalmodels'
@@ -70,6 +71,7 @@ class MythicalModels(models.Model):
     name = fields.Char()
     description = fields.Text()
     car_dealership_id = fields.Many2one('toyota.cardealership', string="Car Dealership")
+    image = fields.Binary(string = "Upload model")
 
 
 class Roles(models.Model):
