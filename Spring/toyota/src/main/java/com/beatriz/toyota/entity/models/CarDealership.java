@@ -59,6 +59,10 @@ public class CarDealership implements Serializable{
 		this.direction = direction;
 		this.telephone = telephone;
 	}
+
+	public CarDealership() {
+		super();
+	}
 	
 	
 	

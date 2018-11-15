@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.beatriz.toyota.entity.models.FutureModels;
 
-public interface IFutureModels extends CrudRepository<FutureModels, Long>{
+public interface IFutureModelsDao extends CrudRepository<FutureModels, Long>{
 
 }

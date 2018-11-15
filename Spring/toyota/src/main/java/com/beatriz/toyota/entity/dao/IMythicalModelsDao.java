@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.beatriz.toyota.entity.models.MythicalModels;
 
-public interface IMythicalModels extends CrudRepository<MythicalModels, Long>{
+public interface IMythicalModelsDao extends CrudRepository<MythicalModels, Long>{
 
 }

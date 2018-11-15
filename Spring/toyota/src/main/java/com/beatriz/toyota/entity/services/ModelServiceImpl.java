@@ -23,22 +23,6 @@ public class ModelServiceImpl implements IModelService{
 	@Autowired
 	private IModelDao modelDao;
 	
-	
-	
-	@Autowired
-	private ISparesDao sparesDao;
-	
-	@Autowired
-	private IAppUserDao usersDao;
-	
-	@Autowired
-	private ISuppliersDao supliersDao;
-	
-	@Override
-	public List<AppUser> getAllUsers() {
-		return (List<AppUser>) usersDao.findAll();
-	}
-	
 	@Override
 	public Model getModel(long id){
 		if (id <= 0) {
@@ -70,57 +54,5 @@ public class ModelServiceImpl implements IModelService{
 	public void deleteModel(long id) {
 		modelDao.deleteById(id);
 	}
-	
-	
-	
-	@Override
-	public Spares getSpare(long id){
-		if (id <= 0) {
-            throw new IllegalArgumentException("ID can not be 0 or <0");
-        }
-		return sparesDao.findById(id).get();
-	}
 
-	@Override
-	public List<Spares> getAllSpares() {
-		return (List<Spares>) sparesDao.findAll();
-	}
-
-	@Override
-	public void post(Spares spares) {
-		sparesDao.save(spares);
-		
-	}
-
-	@Override
-	public void put(Spares spares, long id) {
-		sparesDao.findById(id).ifPresent((x)->{
-			spares.setId(id);
-			sparesDao.save(spares);
-		});
-	}
-
-	@Override
-	public void deleteSpares(long id) {
-		sparesDao.deleteById(id);
-	}
-	
-	@Override
-	public Suppliers getSuppliers(long id){
-		if (id <= 0) {
-            throw new IllegalArgumentException("ID can not be 0 or <0");
-        }
-		return supliersDao.findById(id).get();
-	}
-
-	@Override
-	public List<Suppliers> getAllSuppliers() {
-		return (List<Suppliers>) supliersDao.findAll();
-	}
-
-	@Override
-	public void post(Suppliers model) {
-		supliersDao.save(model);
-		
-	}
 }

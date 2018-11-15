@@ -1,7 +1,6 @@
 package com.beatriz.toyota.controllers;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,30 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.beatriz.toyota.entity.models.Accessories;
-import com.beatriz.toyota.entity.models.AppUser;
-import com.beatriz.toyota.entity.models.Model;
-import com.beatriz.toyota.entity.models.Spares;
-import com.beatriz.toyota.entity.models.Suppliers;
-import com.beatriz.toyota.entity.services.IModelService;
+import com.beatriz.toyota.entity.models.MythicalModels;
+import com.beatriz.toyota.entity.services.IMythicalModelsService;
 
 @CrossOrigin(origins = {"*", "http://localhost:8080"})
 @RestController
-public class ModelController {
-
+public class MythicalModelsController {
 	@Autowired
-	IModelService modelService;
+	IMythicalModelsService modelService;
 	
-	@GetMapping("/models")
-	public List<Model> getAllModels(){
-		System.out.println("llegó a models");
+	@GetMapping("/mythicalmodels")
+	public List<MythicalModels> getAllModels(){
 		return modelService.getAllModels();
 	}
 	
-	@GetMapping("/model/{id}")
-	public ResponseEntity<Model> getOne(@PathVariable(value = "id")long id){
+	@GetMapping("/mythicalmodels/{id}")
+	public ResponseEntity<MythicalModels> getOne(@PathVariable(value = "id")long id){
 		try {
-            Model model = modelService.getModel(id);
+			MythicalModels model = modelService.getModel(id);
             if (model != null) {
                 return ResponseEntity.status(HttpStatus.OK).body(model);
             } else {
@@ -50,21 +43,18 @@ public class ModelController {
 		
 	}
 	
-	@PostMapping("/model")
-	public void add(Model model) {
-		System.out.println("llegó al post de models");
+	@PostMapping("/mythicalmodel")
+	public void add(MythicalModels model) {
 		modelService.post(model);
 	}
 	
-	@PutMapping("/model/{id}")
-	public void update(Model model, @PathVariable(value = "id") long id) {
+	@PutMapping("/mythicalmodel/{id}")
+	public void update(MythicalModels model, @PathVariable(value = "id") long id) {
 		modelService.put(model, id);
 	}
 	
-	@DeleteMapping("/model/{id}")
-	public void update(@PathVariable(value = "id") long id) {
-		System.out.println("llegó al delete de model");
+	@DeleteMapping("/mythicalmodel/{id}")
+	public void updateAccessory(@PathVariable(value = "id") long id) {
 		modelService.deleteModel(id);
 	}
-	
 }

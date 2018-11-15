@@ -1,7 +1,6 @@
 package com.beatriz.toyota.controllers;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,32 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.beatriz.toyota.entity.models.Accessories;
-import com.beatriz.toyota.entity.models.AppUser;
 import com.beatriz.toyota.entity.models.Model;
-import com.beatriz.toyota.entity.models.Spares;
 import com.beatriz.toyota.entity.models.Suppliers;
-import com.beatriz.toyota.entity.services.IModelService;
+import com.beatriz.toyota.entity.services.ISuppliersService;
 
 @CrossOrigin(origins = {"*", "http://localhost:8080"})
 @RestController
-public class ModelController {
-
+public class SuppliersController {
 	@Autowired
-	IModelService modelService;
+	ISuppliersService modelService;
 	
-	@GetMapping("/models")
-	public List<Model> getAllModels(){
-		System.out.println("llegó a models");
-		return modelService.getAllModels();
+	@GetMapping("/suppliers")
+	public List<Suppliers> getAllSuppliers(){
+		return modelService.getAllSuppliers();
 	}
 	
-	@GetMapping("/model/{id}")
-	public ResponseEntity<Model> getOne(@PathVariable(value = "id")long id){
+	@GetMapping("/suppliers/{id}")
+	public ResponseEntity<Suppliers> getOneSuppliers(@PathVariable(value = "id")long id){
 		try {
-            Model model = modelService.getModel(id);
-            if (model != null) {
-                return ResponseEntity.status(HttpStatus.OK).body(model);
+			Suppliers supplier = modelService.getSuppliers(id);
+            if (supplier != null) {
+                return ResponseEntity.status(HttpStatus.OK).body(supplier);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
@@ -50,21 +44,20 @@ public class ModelController {
 		
 	}
 	
-	@PostMapping("/model")
-	public void add(Model model) {
-		System.out.println("llegó al post de models");
-		modelService.post(model);
+	@PostMapping("/supplier")
+	public void add(Suppliers supplier) {
+		modelService.post(supplier);
 	}
 	
-	@PutMapping("/model/{id}")
-	public void update(Model model, @PathVariable(value = "id") long id) {
-		modelService.put(model, id);
+	@PutMapping("/supplier/{id}")
+	public void update(Suppliers supplier, @PathVariable(value = "id") long id) {
+		modelService.put(supplier, id);
 	}
 	
-	@DeleteMapping("/model/{id}")
+	@DeleteMapping("/supplier/{id}")
 	public void update(@PathVariable(value = "id") long id) {
 		System.out.println("llegó al delete de model");
-		modelService.deleteModel(id);
+		modelService.deleteSuppliers(id);
 	}
-	
+
 }
