@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Models
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form [formGroup] = "formUpdate" (ngSubmit)="updateModel()" novalidate>
+        <ion-list >
+            <ion-item >
+                <ion-label stacked>Name:</ion-label>
+                <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('name').errors && formUpdate.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('name').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Power:</ion-label>
+                <ion-input formControlName="power" type = "text" placeholder = "power"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('power').errors && formUpdate.get('power').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('power').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Fuel:</ion-label>
+                <ion-input formControlName="fuel" type = "text" placeholder = "fuel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('fuel').errors && formUpdate.get('fuel').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('fuel').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Price:</ion-label>
+                <ion-input formControlName="price" type = "text" placeholder = "price"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('price').errors && formUpdate.get('price').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('price').hasError('required')">Field is required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonUpdate' ion-button color = 'gray' block type="submit" [disabled]="formUpdate.invalid">Save Model</button>
+          </div>
+      </form>
+  </ion-content>

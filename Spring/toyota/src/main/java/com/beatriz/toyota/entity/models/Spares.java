@@ -38,8 +38,8 @@ public class Spares implements Serializable{
 	@NotEmpty
 	private String reference;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="car_dealership_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="car_dealership_id")
 	private CarDealership cardealership;
 
 	@ManyToMany(fetch = FetchType.LAZY,
@@ -84,18 +84,12 @@ public class Spares implements Serializable{
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	
-	public CarDealership getCardealership() {
-		return cardealership;
-	}
+
 
 	public void setCardealership(CarDealership cardealership) {
 		this.cardealership = cardealership;
 	}
 
-	public Set<Suppliers> getSuppliers() {
-		return suppliers;
-	}
 
 	public void setSuppliers(Set<Suppliers> suppliers) {
 		this.suppliers = suppliers;

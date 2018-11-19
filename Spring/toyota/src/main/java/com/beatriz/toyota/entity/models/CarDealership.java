@@ -54,8 +54,11 @@ public class CarDealership implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public CarDealership(@NotEmpty String direction, @NotEmpty String telephone) {
+	
+
+	public CarDealership(long id, @NotEmpty String direction, @NotEmpty String telephone) {
 		super();
+		this.id = id;
 		this.direction = direction;
 		this.telephone = telephone;
 	}

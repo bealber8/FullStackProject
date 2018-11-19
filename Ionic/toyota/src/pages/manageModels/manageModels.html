@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Manage Models and Accessories
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <button class = "button" ion-button block color='gray' (click) = "insertModels()">Insert Model</button>
+            <button ion-button block color='gray' (click) = "updateModels()">Update Model</button>
+            <button ion-button block color='gray'(click) = "deleteModels()">Delete Model</button>
+          </ion-col>
+          <ion-col col-12>
+            <button class = "button" ion-button block color='gray' (click) = "insertAccessories()">Insert Accessory</button>
+            <button ion-button block color='gray' (click) = "updateAccessories()">Update Accessory</button>
+            <button ion-button block color='gray'(click) = "deleteAccessories()">Delete Accessory</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

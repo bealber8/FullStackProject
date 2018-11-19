@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Accessory
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form [formGroup] = "formUpdate" (ngSubmit)="updateAccessory()" novalidate>
+        <ion-list >
+            <ion-item>
+                <ion-label stacked>Category:</ion-label>
+                <ion-input formControlName="category" type = "text" placeholder = "category"></ion-input>
+            </ion-item>
+                <ion-item *ngIf="formUpdate.get('category').errors && formUpdate.get('category').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('category').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item >
+                <ion-label stacked>Name:</ion-label>
+                <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('name').errors && formUpdate.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('name').hasError('required')">Field is required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonUpdate' ion-button color = 'gray' block type="submit" [disabled]="formUpdate.invalid">Save Accessory</button>
+          </div>
+      </form>
+  </ion-content>
