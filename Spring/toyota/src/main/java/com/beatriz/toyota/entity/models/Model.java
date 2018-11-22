@@ -45,8 +45,8 @@ public class Model implements Serializable{
 	private float price;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="carDealership_id", nullable = false)
-	private CarDealership cardealership;
+	@JoinColumn(name = "car_dealership_id", nullable = false)
+	CarDealership carDealership;
 	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -99,12 +99,33 @@ public class Model implements Serializable{
 		this.price = price;
 	}
 
-	public Model(@NotEmpty String name, @NotEmpty int power, @NotEmpty String fuel, @NotEmpty float price) {
+	public CarDealership getCarDealership() {
+		return carDealership;
+	}
+
+	public void setCarDealership(CarDealership carDealership) {
+		this.carDealership = carDealership;
+	}
+
+	public Set<Suppliers> getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(Set<Suppliers> suppliers) {
+		this.suppliers = suppliers;
+	}
+
+	
+	
+	public Model(@NotEmpty String name, @NotNull int power, @NotEmpty String fuel, @NotNull float price,
+			CarDealership carDealership, Set<Suppliers> suppliers) {
 		super();
 		this.name = name;
 		this.power = power;
 		this.fuel = fuel;
 		this.price = price;
+		this.carDealership = carDealership;
+		this.suppliers = suppliers;
 	}
 
 	public Model() {

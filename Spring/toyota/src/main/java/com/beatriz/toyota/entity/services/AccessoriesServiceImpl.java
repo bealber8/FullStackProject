@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beatriz.toyota.entity.dao.IAccessoriesDao;
+import com.beatriz.toyota.entity.dao.ICarDealershipDao;
 import com.beatriz.toyota.entity.models.Accessories;
+
 @Service
 public class AccessoriesServiceImpl implements IAccessoriesService{
 	@Autowired
 	private IAccessoriesDao accessoriesDao;
+	
+	@Autowired
+	private ICarDealershipDao carDealershipDao;
 	
 	@Override
 	public Accessories getAccessory(long id){
@@ -42,5 +47,20 @@ public class AccessoriesServiceImpl implements IAccessoriesService{
 	@Override
 	public void deleteAccessory(long id) {
 		accessoriesDao.deleteById(id);
+	}
+	
+	@Override
+	public List<Accessories> getAllAccessoriesByCarDealershipId(long carDealershipId) {
+		List<Accessories> accessories = accessoriesDao.findByCarDealershipId(carDealershipId);
+		return accessories;
+	}
+
+	@Override
+	public void saveAccessoryInCarDealershipByCarDealershipId(Accessories accessory, long carDealershipId) {
+		carDealershipDao.findById(carDealershipId).ifPresent(x->{
+			accessory.setCardealership(x);
+			accessoriesDao.save(accessory);
+		});
+		
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.beatriz.toyota.entity.dao.ICarDealershipDao;
 import com.beatriz.toyota.entity.dao.ISparesDao;
 import com.beatriz.toyota.entity.models.Spares;
 
@@ -12,6 +13,9 @@ import com.beatriz.toyota.entity.models.Spares;
 public class SparesServiceImpl implements ISparesService{
 	@Autowired
 	private ISparesDao sparesDao;
+	
+	@Autowired
+	private ICarDealershipDao carDealershipDao;
 	
 	@Override
 	public Spares getSpare(long id){
@@ -43,5 +47,19 @@ public class SparesServiceImpl implements ISparesService{
 	@Override
 	public void deleteSpares(long id) {
 		sparesDao.deleteById(id);
+	}
+	
+	@Override
+	public List<Spares> getAllSparesByCarDealershipId(long carDealershipId) {
+		List<Spares> spares = sparesDao.findByCarDealershipId(carDealershipId);
+		return spares;
+	}
+	
+	@Override
+	public void saveSpareInCarDealershipByCarDealershipId(Spares spares, long carDealershipId) {
+		carDealershipDao.findById(carDealershipId).ifPresent((x)->{
+			spares.setCarDealership(x);
+			sparesDao.save(spares);
+		});
 	}
 }

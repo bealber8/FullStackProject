@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.beatriz.toyota.entity.dao.IAccessoriesDao;
 import com.beatriz.toyota.entity.dao.IAppUserDao;
+import com.beatriz.toyota.entity.dao.ICarDealershipDao;
 import com.beatriz.toyota.entity.dao.IModelDao;
 import com.beatriz.toyota.entity.dao.ISparesDao;
 import com.beatriz.toyota.entity.dao.ISuppliersDao;
@@ -22,6 +23,9 @@ public class ModelServiceImpl implements IModelService{
 
 	@Autowired
 	private IModelDao modelDao;
+	
+	@Autowired
+	private ICarDealershipDao carDealershipDao;
 	
 	@Override
 	public Model getModel(long id){
@@ -54,5 +58,21 @@ public class ModelServiceImpl implements IModelService{
 	public void deleteModel(long id) {
 		modelDao.deleteById(id);
 	}
+	
+	@Override
+	public List<Model> getAllModelsByCarDealersId(long carDealershipId){
+		List<Model> model = modelDao.findByCarDealershipId(carDealershipId);
+		return model;
+	}
+	
+	@Override
+	public void saveModelInCarDealershipByCarDealershipId(Model model, long carDealershipId){
+		carDealershipDao.findById(carDealershipId).ifPresent((x)->{
+			model.setCarDealership(x);
+			modelDao.save(model);
+		});
+	}
+	
+	
 
 }

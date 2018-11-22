@@ -1,29 +1,29 @@
 
 package com.beatriz.toyota;
 
-import java.security.Principal;
+/*import java.security.Principal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.Filter;
+import javax.servlet.Filter;*/
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
+/*import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;*/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+/*import org.springframework.core.annotation.Order;*/
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
+/*import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
@@ -37,15 +37,15 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.filter.CompositeFilter;
+import org.springframework.web.filter.CompositeFilter;*/
 
 import com.beatriz.toyota.entity.services.JpaUserDetailsService;
 
 @Configuration
-@RestController
-@EnableOAuth2Client
-@EnableAuthorizationServer
-@Order
+//@RestController
+//@EnableOAuth2Client
+//@EnableAuthorizationServer
+//@Order
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -54,9 +54,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Autowired
-	OAuth2ClientContext oauth2ClientContext;
-	
+	//@Autowired
+	//OAuth2ClientContext oauth2ClientContext;
+	/*
 	@RequestMapping({ "/user", "/me" })
 	public Map<String, String> user(Principal principal) {
 		Map<String, String> map = new LinkedHashMap<>();
@@ -74,7 +74,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
 				.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
 		// @formatter:on
-	}*/
+	}
 	
 	@Configuration
 	@EnableResourceServer
@@ -145,7 +145,7 @@ class ClientResources {
 		return resource;
 	}
 }
-	
+	*/
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -160,22 +160,30 @@ class ClientResources {
 			.authorizeRequests()
 			.antMatchers("/users").permitAll()
 			.antMatchers("/accessories").permitAll()
+			//.antMatchers("/cardealership").hasAnyRole("ADMIN")
 			.antMatchers("/accessories/**").hasAnyRole("ADMIN")
 			.antMatchers("/accessory").hasAnyRole("ADMIN")
 			.antMatchers("/accessory/**").hasAnyRole("ADMIN")
 			.antMatchers("/suppliers").hasAnyRole("ADMIN")
-			.antMatchers("/models").hasAnyRole("ADMIN")
+			.antMatchers("/spares/**").permitAll()
+			.antMatchers("/spares").permitAll()
+			.antMatchers("/spare/**").permitAll()
+			.antMatchers("/spare").permitAll()
+			.antMatchers("/models").permitAll()
+			.antMatchers("/model/**").permitAll()
 			.antMatchers(HttpMethod.DELETE, "/model/**").permitAll()
 			.antMatchers("/supplier").permitAll()
 			.antMatchers("/suppliers/**").hasAnyRole("ADMIN")
 			.antMatchers("/", "/login**", "/webjars/**", "/error").permitAll()
 			.anyRequest().authenticated()
 			.and()
+			.httpBasic();
+		/*
 			.exceptionHandling()
 			.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")).and().logout()
 			.logoutSuccessUrl("/").permitAll().and().csrf()
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-			.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+			.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);*/
 	}
 	
 	@Autowired

@@ -1,7 +1,6 @@
 package com.beatriz.toyota.entity.models;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,8 +36,8 @@ public class Accessories implements Serializable{
 	private String name;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="carDealership_id", nullable = false)
-	private CarDealership cardealership;
+	@JoinColumn(name="car_dealership_id", nullable = false)
+	CarDealership carDealership;
 	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -75,10 +74,29 @@ public class Accessories implements Serializable{
 		this.name = name;
 	}
 
-	public Accessories(@NotEmpty String category, @NotEmpty String name) {
+	public CarDealership getCardealership() {
+		return carDealership;
+	}
+
+	public void setCardealership(CarDealership carDealership) {
+		this.carDealership = carDealership;
+	}
+
+	public Set<Suppliers> getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(Set<Suppliers> suppliers) {
+		this.suppliers = suppliers;
+	}
+
+	public Accessories(@NotEmpty String category, @NotEmpty String name, CarDealership carDealership,
+			Set<Suppliers> suppliers) {
 		super();
 		this.category = category;
 		this.name = name;
+		this.carDealership = carDealership;
+		this.suppliers = suppliers;
 	}
 
 	public Accessories() {

@@ -34,19 +34,25 @@ public class ModelController {
 		return modelService.getAllModels();
 	}
 	
+	@GetMapping("/cardealership/{carDealershipId}/models")
+	public List<Model> getAllModelsByCarDealersId(@PathVariable (value = "carDealershipId") Long carDealershipId){
+		return modelService.getAllModelsByCarDealersId(carDealershipId);
+	}
+	
 	@GetMapping("/model/{id}")
 	public ResponseEntity<Model> getOne(@PathVariable(value = "id")long id){
-		try {
+		//try {
             Model model = modelService.getModel(id);
             if (model != null) {
                 return ResponseEntity.status(HttpStatus.OK).body(model);
             } else {
+            	System.out.println("Model with id " +id+" not found");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-
+/*
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        }*/
 		
 	}
 	
@@ -54,6 +60,11 @@ public class ModelController {
 	public void add(Model model) {
 		System.out.println("llegó al post de models");
 		modelService.post(model);
+	}
+	
+	@PostMapping("/cardealership/{carDealershipId}/model")
+	public void save(Model model, @PathVariable (value = "carDealershipId") Long carDealershipId) {
+		modelService.saveModelInCarDealershipByCarDealershipId(model, carDealershipId);
 	}
 	
 	@PutMapping("/model/{id}")

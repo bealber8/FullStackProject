@@ -38,10 +38,12 @@ public class Spares implements Serializable{
 	@NotEmpty
 	private String reference;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="car_dealership_id")
-	private CarDealership cardealership;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "car_dealership_id", nullable = false)
+	CarDealership carDealership;
 
+	//, referencedColumnName = "id"
+	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
@@ -85,29 +87,37 @@ public class Spares implements Serializable{
 		this.reference = reference;
 	}
 
-
-	public void setCardealership(CarDealership cardealership) {
-		this.cardealership = cardealership;
+	
+	public CarDealership getCarDealership() {
+		return carDealership;
 	}
 
+	public void setCarDealership(CarDealership carDealership) {
+		this.carDealership = carDealership;
+	}
+
+	public Set<Suppliers> getSuppliers() {
+		return suppliers;
+	}
 
 	public void setSuppliers(Set<Suppliers> suppliers) {
 		this.suppliers = suppliers;
 	}
 
 	public Spares(@NotEmpty String category, @NotEmpty String name, @NotEmpty String reference,
-			CarDealership cardealership, Set<Suppliers> suppliers) {
+			CarDealership carDealership, Set<Suppliers> suppliers) {
 		super();
 		this.category = category;
 		this.name = name;
 		this.reference = reference;
-		this.cardealership = cardealership;
+		this.carDealership = carDealership;
 		this.suppliers = suppliers;
 	}
 
 	public Spares() {
-		super();
 	}
+
+	
 	
 	
 }

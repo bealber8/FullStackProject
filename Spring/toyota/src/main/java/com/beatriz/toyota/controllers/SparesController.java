@@ -27,6 +27,11 @@ public class SparesController {
 		return modelService.getAllSpares();
 	}
 	
+	@GetMapping("/cardealership/{carDealershipId}/spares")
+	public List<Spares> getAllSparesByCarDealership(@PathVariable (value="carDealershipId") Long carDealershipId){
+		return modelService.getAllSparesByCarDealershipId(carDealershipId);
+	}
+	
 	@GetMapping("/spares/{id}")
 	public ResponseEntity<Spares> getOneSpare(@PathVariable(value = "id")long id){
 		try {
@@ -46,6 +51,11 @@ public class SparesController {
 	@PostMapping("/spare")
 	public void add(Spares spare) {
 		modelService.post(spare);
+	}
+	
+	@PostMapping("/cardealership/{carDealershipId}/spare")
+	public void add(Spares spare, @PathVariable (value = "carDealershipId") Long carDealershipId) {
+		modelService.saveSpareInCarDealershipByCarDealershipId(spare, carDealershipId);
 	}
 	
 	@PutMapping("/spare/{id}")
