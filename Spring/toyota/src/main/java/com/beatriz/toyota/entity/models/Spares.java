@@ -87,10 +87,6 @@ public class Spares implements Serializable{
 		this.reference = reference;
 	}
 
-	
-	public CarDealership getCarDealership() {
-		return carDealership;
-	}
 
 	public void setCarDealership(CarDealership carDealership) {
 		this.carDealership = carDealership;

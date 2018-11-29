@@ -17,6 +17,8 @@
                 <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
             </ion-item>
             <ion-item *ngIf="formInsert.get('name').errors && formInsert.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('maxLength')">Max of 50 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('pattern')">It is not a correct name</p>
                 <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('required')">Field is required</p>
             </ion-item>
             <ion-item>
@@ -24,6 +26,7 @@
                 <ion-input formControlName="power" type = "text" placeholder = "power"></ion-input>
             </ion-item>
             <ion-item *ngIf="formInsert.get('power').errors && formInsert.get('power').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('power').hasError('pattern')">It is not a correct power</p>
                 <p color="danger" ion-text *ngIf="formInsert.get('power').hasError('required')">Field is required</p>
             </ion-item>
             <ion-item>
@@ -31,6 +34,8 @@
                 <ion-input formControlName="fuel" type = "text" placeholder = "fuel"></ion-input>
             </ion-item>
             <ion-item *ngIf="formInsert.get('fuel').errors && formInsert.get('fuel').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('maxLength')">Max of 50 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('pattern')">It is not a correct fuel</p>
                 <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('required')">Field is required</p>
             </ion-item>
             <ion-item>
@@ -38,6 +43,7 @@
                 <ion-input formControlName="price" type = "text" placeholder = "price"></ion-input>
             </ion-item>
             <ion-item *ngIf="formInsert.get('price').errors && formInsert.get('price').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('price').hasError('pattern')">Field is required</p>
                 <p color="danger" ion-text *ngIf="formInsert.get('price').hasError('required')">Field is required</p>
             </ion-item>
         </ion-list>

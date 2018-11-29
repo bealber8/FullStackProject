@@ -1,22 +1,13 @@
 package com.beatriz.toyota.entity.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beatriz.toyota.entity.dao.IAccessoriesDao;
-import com.beatriz.toyota.entity.dao.IAppUserDao;
 import com.beatriz.toyota.entity.dao.ICarDealershipDao;
 import com.beatriz.toyota.entity.dao.IModelDao;
-import com.beatriz.toyota.entity.dao.ISparesDao;
-import com.beatriz.toyota.entity.dao.ISuppliersDao;
-import com.beatriz.toyota.entity.models.Accessories;
-import com.beatriz.toyota.entity.models.AppUser;
 import com.beatriz.toyota.entity.models.Model;
-import com.beatriz.toyota.entity.models.Spares;
-import com.beatriz.toyota.entity.models.Suppliers;
 
 @Service
 public class ModelServiceImpl implements IModelService{
@@ -56,7 +47,7 @@ public class ModelServiceImpl implements IModelService{
 
 	@Override
 	public void deleteModel(long id) {
-		modelDao.deleteById(id);
+		modelDao.deleteById(id);;
 	}
 	
 	@Override

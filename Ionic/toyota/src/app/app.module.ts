@@ -6,39 +6,49 @@ import { StatusBar } from '@ionic-native/status-bar';
 import {HttpClientModule} from '@angular/common/http';
 
 import { MyApp } from './app.component';
+import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { RegisterUserPage } from '../pages/registerUser/registerUser';
 import { ModelsPage } from '../pages/models/models';
 import { AccessoriesPage} from '../pages/accessories/accessories';
-import { ManageModelsPage } from '../pages/manageModels/manageModels';
+import { ManageAppPage } from '../pages/manageApp/manageApp';
 import { InsertModelsPage } from '../pages/insertModels/insertModels';
 import { UpdateModelsPage } from '../pages/updateModels/updateModels';
 import { UpdateModelPage } from '../pages/updateModel/updateModel';
-import { DeleteModelsPage } from '../pages/deleteModels/deleteModels';
+import { ManageModelsPage } from '../pages/manageModels/manageModels';
 import { InsertAccessoriesPage } from '../pages/insertAccessories/insertAccessories';
 import { UpdateAccessoriesPage } from '../pages/updateAccessories/updateAccessories';
 import { UpdateAccessoryPage } from '../pages/updateAccessory/updateAccessory';
-import { DeleteAccessoriesPage } from '../pages/deleteAccessories/deleteAccessories';
+import { ManageAccessoriesPage } from '../pages/manageAccessories/manageAccessories';
+import { InsertSparesPage } from '../pages/insertSpares/insertSpares'
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { FutureModelsPage } from '../pages/futureModels/futureModels';
 import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
+import {SparesPage} from '../pages/spares/spares';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
+    RegisterUserPage,
     ModelsPage,
     AccessoriesPage,
-    ManageModelsPage,
+    ManageAppPage,
     InsertModelsPage,
-    DeleteModelsPage,
+    ManageModelsPage,
     FutureModelsPage,
     MythicalModelsPage,
     UpdateModelsPage,
     UpdateModelPage,
     InsertAccessoriesPage,
-    DeleteAccessoriesPage,
+    ManageAccessoriesPage,
     UpdateAccessoriesPage,
-    UpdateAccessoryPage
+    UpdateAccessoryPage,
+    InsertSparesPage,
+    TabsPage,
+    SparesPage
   ],
   imports: [
     BrowserModule,
@@ -49,19 +59,24 @@ import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
+    RegisterUserPage,
     ModelsPage,
     AccessoriesPage,
-    ManageModelsPage,
+    ManageAppPage,
     InsertModelsPage,
-    DeleteModelsPage,
+    ManageModelsPage,
     FutureModelsPage,
     MythicalModelsPage,
     UpdateModelsPage,
     UpdateModelPage,
     InsertAccessoriesPage,
-    DeleteAccessoriesPage,
+    ManageAccessoriesPage,
     UpdateAccessoriesPage,
-    UpdateAccessoryPage
+    UpdateAccessoryPage,
+    InsertSparesPage,
+    TabsPage,
+    SparesPage
   ],
   providers: [
     StatusBar,

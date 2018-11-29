@@ -4,23 +4,40 @@
           <ion-icon name="menu"></ion-icon>
         </button>
     <ion-title>
-      Manage Models and Accessories
+      Manage Models
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="insertModel()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-grid>
         <ion-row>
-          <ion-col col-12>
-            <button class = "button" ion-button block color='gray' (click) = "insertModels()">Insert Model</button>
-            <button ion-button block color='gray' (click) = "updateModels()">Update Model</button>
-            <button ion-button block color='gray'(click) = "deleteModels()">Delete Model</button>
-          </ion-col>
-          <ion-col col-12>
-            <button class = "button" ion-button block color='gray' (click) = "insertAccessories()">Insert Accessory</button>
-            <button ion-button block color='gray' (click) = "updateAccessories()">Update Accessory</button>
-            <button ion-button block color='gray'(click) = "deleteAccessories()">Delete Accessory</button>
+          <ion-col>
+            <ion-list>
+              <ion-item-sliding *ngFor = "let model of models">
+                <ion-item text-wrap>
+                  <h2>{{model.name}}</h2>
+                  <p>{{model.power}}</p>
+                  <p>{{model.fuel}}</p>
+                  <p>{{model.price}}</p>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button color='primary' (click)='updateModels(model)' icon-start>
+                        <ion-icon name="create"></ion-icon>
+                        Update
+                    </button>
+                    <button ion-button color='danger' (click)='deleteModel(model.id)' icon-start>
+                        <ion-icon name="trash"></ion-icon>
+                        Delete
+                    </button>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
           </ion-col>
         </ion-row>
     </ion-grid>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Manage APP
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <button class = "button" ion-button block color='gray' (click) = "manageModels()">Manage Models</button>
+          </ion-col>
+          <ion-col col-12>
+            <button class = "button" ion-button block color='gray' (click) = "manageAccessories()">Manage Accessories</button>
+          </ion-col>
+          <ion-col col-12>
+            <button class = "button" ion-button block color='gray' (click) = "manageSpares()">Manage Spares</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

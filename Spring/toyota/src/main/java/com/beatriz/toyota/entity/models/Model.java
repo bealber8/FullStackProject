@@ -1,5 +1,6 @@
 package com.beatriz.toyota.entity.models;
 
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -99,9 +100,7 @@ public class Model implements Serializable{
 		this.price = price;
 	}
 
-	public CarDealership getCarDealership() {
-		return carDealership;
-	}
+	
 
 	public void setCarDealership(CarDealership carDealership) {
 		this.carDealership = carDealership;

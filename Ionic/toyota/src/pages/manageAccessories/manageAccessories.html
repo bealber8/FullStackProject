@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Manage Accessories
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="insertAccessory()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item-sliding *ngFor = "let accessory of accessories">
+                  <ion-item text-wrap>
+                <h2>{{accessory.category}}</h2>
+                <p>{{accessory.name}}</p>
+                </ion-item>
+                <ion-item-options>
+                  <button ion-button color='primary' (click)='updateAccessory(accessory)' icon-start>
+                      <ion-icon name="create"></ion-icon>
+                      Update
+                  </button>
+                  <button ion-button color='danger' (click)='deleteAccessory(accessory.id)' icon-start>
+                      <ion-icon name="trash"></ion-icon>
+                      Delete
+                  </button>
+              </ion-item-options>
+            </ion-item-sliding>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+</ion-content>

@@ -10,25 +10,33 @@
   </ion-header>
   
   <ion-content padding>
-    <form [formGroup] = "formUpdate" (ngSubmit)="updateAccessory()" novalidate>
-        <ion-list >
-            <ion-item>
-                <ion-label stacked>Category:</ion-label>
-                <ion-input formControlName="category" type = "text" placeholder = "category"></ion-input>
-            </ion-item>
-                <ion-item *ngIf="formUpdate.get('category').errors && formUpdate.get('category').dirty">
-                <p color="danger" ion-text *ngIf="formUpdate.get('category').hasError('required')">Field is required</p>
-            </ion-item>
-            <ion-item >
-                <ion-label stacked>Name:</ion-label>
-                <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="formUpdate.get('name').errors && formUpdate.get('name').dirty">
-                <p color="danger" ion-text *ngIf="formUpdate.get('name').hasError('required')">Field is required</p>
-            </ion-item>
-        </ion-list>
-        <div padding>
-            <button id='buttonUpdate' ion-button color = 'gray' block type="submit" [disabled]="formUpdate.invalid">Save Accessory</button>
-          </div>
-      </form>
+    <form #accessoryForm = "ngForm" (ngSubmit)="updateAccessory(accessoryForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" [(ngModel)]="accessory.category" #category="ngModel">
+                            <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
+                                <div *ngIf="category.errors.required">Category is required.</div>
+                                <div *ngIf="category.errors.minlength">Category must be at least 4 characters long.</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" [(ngModel)]="accessory.name" #name="ngModel">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                                <div *ngIf="name.errors.required">Name is required.</div>
+                                <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="primary" full type="submit" [disabled]="!accessoryForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+    </form>
   </ion-content>

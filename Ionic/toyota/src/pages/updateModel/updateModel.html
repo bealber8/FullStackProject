@@ -10,8 +10,36 @@
   </ion-header>
   
   <ion-content padding>
-    <form [formGroup] = "formUpdate" (ngSubmit)="updateModel()" novalidate>
-        <ion-list >
+    <form #modelForm = "ngForm" (ngSubmit)="updateModel(modelForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" [(ngModel)]="model.name" #name="ngModel">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                            <div *ngIf="name.errors.required">Name is required.</div>
+                            <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                        </div>
+                    </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Power" name="power" type="number" required [(ngModel)]="model.power" #power></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Fuel" name="fuel" type="text" required [(ngModel)]="model.fuel" #fuel></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Price" name="price" type="text" required [(ngModel)]="model.price" #price></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="primary" full type="submit" [disabled]="!modelForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-list >
             <ion-item >
                 <ion-label stacked>Name:</ion-label>
                 <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
@@ -43,6 +71,6 @@
         </ion-list>
         <div padding>
             <button id='buttonUpdate' ion-button color = 'gray' block type="submit" [disabled]="formUpdate.invalid">Save Model</button>
-          </div>
+          </div> -->
       </form>
   </ion-content>

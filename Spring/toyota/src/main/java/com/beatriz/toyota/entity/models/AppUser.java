@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+
 
 
 @Entity
@@ -69,6 +70,8 @@ public class AppUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 	public List<Role> getRoles() {
 		return roles;
@@ -118,15 +121,17 @@ public class AppUser implements Serializable{
 		this.email = email;
 	}
 
-	public AppUser(@NotEmpty String name, @NotEmpty String surname, @NotEmpty int age,
-			@NotEmpty String email, @NotEmpty String password, @NotEmpty String telephone) {
+	public AppUser(long id, String name, String surname, int age, String email, String password,
+			String telephone, List<Role> roles) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
 		this.email = email;
 		this.password = password;
 		this.telephone = telephone;
+		this.roles = roles;
 	}
 
 	public AppUser() {

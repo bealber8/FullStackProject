@@ -11,8 +11,8 @@ export class InsertAccessoriesPage {
   formInsert: FormGroup;
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
-      category: ['', [Validators.required]],
-      name: ['', [Validators.required]]
+      category: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      name: ['', Validators.compose([Validators.maxLength(60), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
     });
   }
   

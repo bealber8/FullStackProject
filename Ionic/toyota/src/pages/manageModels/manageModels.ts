@@ -1,42 +1,54 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { InsertModelsPage } from '../insertModels/insertModels';
-import { InsertAccessoriesPage } from '../insertAccessories/insertAccessories';
+import { NavController, ToastController } from 'ionic-angular';
+import { UserServiceProvider} from '../../providers/user-service/user-service';
 import { UpdateModelsPage } from '../updateModels/updateModels';
-import { UpdateAccessoriesPage } from '../updateAccessories/updateAccessories';
-import { DeleteModelsPage } from '../deleteModels/deleteModels';
-import { DeleteAccessoriesPage } from '../deleteAccessories/deleteAccessories';
+import { Model } from '../../models/model';
+import { InsertModelsPage } from '../insertModels/insertModels';
+import { UpdateModelPage } from '../updateModel/updateModel';
+
 @Component({
   selector: 'page-manageModels',
   templateUrl: 'manageModels.html'
 })
 export class ManageModelsPage {
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  models: any;
+  
+  constructor(public navCtrl: NavController, public servicio: UserServiceProvider, public toastCtrl: ToastController) {
     
   }
 
-  insertModels(){
-    this.navCtrl.push(InsertModelsPage);
+  ionViewDidLoad(){
+    this.servicio.getModels().subscribe(
+      (data) => {
+        this.models = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
-  updateModels(){
-    this.navCtrl.push(UpdateModelsPage);
+  insertModel(){
+    this.navCtrl.push(InsertModelsPage, {"parentPage": this});
   }
 
-  deleteModels(){
-    this.navCtrl.push(DeleteModelsPage);
+  updateModels(model: Model){
+    this.navCtrl.push(UpdateModelPage, {model: model, "parentPage": this});
   }
 
-  insertAccessories(){
-    this.navCtrl.push(InsertAccessoriesPage);
-  }
-
-  updateAccessories(){
-    this.navCtrl.push(UpdateAccessoriesPage);
-  }
-
-  deleteAccessories(){
-    this.navCtrl.push(DeleteAccessoriesPage);
+  deleteModel(id){
+    this.servicio.deleteModel(id).subscribe(
+      (data) =>{
+        console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Model was deleted successfully',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
   }
 }

@@ -11,10 +11,10 @@ export class InsertModelsPage {
   formInsert: FormGroup;
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
-      name: ['', [Validators.required]],
-      power: ['', [Validators.required]],
-      fuel: ['', [Validators.required]],
-      price: ['', [Validators.required]]
+      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
+      power: ['', Validators.compose([Validators.pattern('[0-9]*'), Validators.required])],
+      fuel: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ,]*'), Validators.required])],
+      price: ['', Validators.compose([Validators.pattern('[0-9]*'), Validators.required])]
     });
   }
   
