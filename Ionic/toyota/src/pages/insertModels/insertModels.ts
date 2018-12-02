@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
 
@@ -9,7 +9,7 @@ import { UserServiceProvider} from '../../providers/user-service/user-service';
 })
 export class InsertModelsPage {
   formInsert: FormGroup;
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       power: ['', Validators.compose([Validators.pattern('[0-9]*'), Validators.required])],
@@ -28,6 +28,8 @@ export class InsertModelsPage {
     }
     this.userService.postModel(model).subscribe(
       (data) => {
+        this.navParams.get("parentPage").ionViewDidLoad();
+        this.navCtrl.pop();
         console.log(data);
         const toast = this.toastCtrl.create({
           message: 'Model was added successfully',

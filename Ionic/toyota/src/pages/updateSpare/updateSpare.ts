@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 import { NavParams, NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, NgForm} from '@angular/forms';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
-import { Accessory } from '../../models/accessories';
+import { Spare } from '../../models/spares';
 
 @Component({
-  selector: 'page-updateAccessory',
-  templateUrl: 'updateAccessory.html'
+  selector: 'page-updateSpare',
+  templateUrl: 'updateSpare.html'
 })
-export class UpdateAccessoryPage {
-  accessory: Accessory = new Accessory;
+export class UpdateSparePage {
+  spare: Spare = new Spare;
   formUpdate: FormGroup;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public params: NavParams, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
-    this.accessory = this.navParams.get('accessory');
+    this.spare = this.navParams.get('spare');
 
     // this.formUpdate = this.fb.group({
     //   category: ['', [Validators.required]],
@@ -21,14 +21,14 @@ export class UpdateAccessoryPage {
     // });
   }
 
-  updateAccessory(form: NgForm){
+  updateSpare(form: NgForm){
     console.log(form)
-    this.userService.updateAccessory(form, this.accessory.id).subscribe(
+    this.userService.updateSpares(form, this.spare.id).subscribe(
       result => {
         this.navParams.get("parentPage").ionViewDidLoad();
         this.navCtrl.pop();
         const toast = this.toastCtrl.create({
-          message: 'Accessory was updated successfully',
+          message: 'Spare was updated successfully',
           duration: 3000
         });
         toast.present();

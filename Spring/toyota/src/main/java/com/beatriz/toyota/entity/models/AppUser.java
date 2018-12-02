@@ -37,15 +37,18 @@ public class AppUser implements Serializable{
 	
 	@NotNull
 	private int age;
+	
+	@NotEmpty
+	private String telephone;
 
 	@NotEmpty
 	private String email;
 	
 	@NotEmpty
-	private String password;
+	private String username;
 	
 	@NotEmpty
-	private String telephone;
+	private String password;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="carDealership_id", nullable = false)
@@ -70,8 +73,14 @@ public class AppUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public List<Role> getRoles() {
 		return roles;
@@ -121,16 +130,17 @@ public class AppUser implements Serializable{
 		this.email = email;
 	}
 
-	public AppUser(long id, String name, String surname, int age, String email, String password,
-			String telephone, List<Role> roles) {
+	public AppUser(long id, String name, String surname, int age, String telephone, String email, String username, String password,
+			 List<Role> roles) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
-		this.email = email;
-		this.password = password;
 		this.telephone = telephone;
+		this.email = email;
+		this.username = username;
+		this.password = password;
 		this.roles = roles;
 	}
 

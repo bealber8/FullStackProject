@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { ManageModelsPage } from '../manageModels/manageModels';
-import { InsertAccessoriesPage } from '../insertAccessories/insertAccessories';
-import { UpdateModelsPage } from '../updateModels/updateModels';
-import { UpdateAccessoriesPage } from '../updateAccessories/updateAccessories';
 import { ManageAccessoriesPage } from '../manageAccessories/manageAccessories';
+import { ManageSparesPage } from '../manageSpares/manageSpares';
 @Component({
   selector: 'page-manageApp',
   templateUrl: 'manageApp.html'
@@ -12,7 +10,6 @@ import { ManageAccessoriesPage } from '../manageAccessories/manageAccessories';
 export class ManageAppPage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    
   }
 
   manageModels(){
@@ -21,5 +18,9 @@ export class ManageAppPage {
 
   manageAccessories(){
     this.navCtrl.push(ManageAccessoriesPage);
+  }
+
+  manageSpares(){
+    this.navCtrl.push(ManageSparesPage);
   }
 }

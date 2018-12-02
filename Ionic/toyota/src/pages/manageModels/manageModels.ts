@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
-import { UpdateModelsPage } from '../updateModels/updateModels';
 import { Model } from '../../models/model';
 import { InsertModelsPage } from '../insertModels/insertModels';
 import { UpdateModelPage } from '../updateModel/updateModel';
@@ -39,6 +38,8 @@ export class ManageModelsPage {
   deleteModel(id){
     this.servicio.deleteModel(id).subscribe(
       (data) =>{
+        this.models.splice(
+          this.models.map(item => item.id).indexOf(id), 1)
         console.log(data);
         const toast = this.toastCtrl.create({
           message: 'Model was deleted successfully',

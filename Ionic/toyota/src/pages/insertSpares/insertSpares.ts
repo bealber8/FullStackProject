@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
 
@@ -9,7 +9,7 @@ import { UserServiceProvider} from '../../providers/user-service/user-service';
 })
 export class InsertSparesPage {
   formInsert: FormGroup;
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
       category: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       name: ['', Validators.compose([Validators.maxLength(60), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -18,17 +18,20 @@ export class InsertSparesPage {
   }
   
 
-  postAccessory(){
-    var accessory = {
+  postSpare(){
+    var spare = {
       category: this.formInsert.get('category').value,
-      name: this.formInsert.get('name').value
+      name: this.formInsert.get('name').value,
+      reference: this.formInsert.get('reference').value
     }
-    console.log(accessory);
-    this.userService.postAccessory(accessory).subscribe(
+    console.log(spare);
+    this.userService.postSpares(spare).subscribe(
       (data) => {
+        this.navParams.get("parentPage").ionViewDidLoad();
+        this.navCtrl.pop();
         console.log(data);
         const toast = this.toastCtrl.create({
-          message: 'Accessory was added successfully',
+          message: 'Spare was added successfully',
           duration: 3000
         });
         toast.present();

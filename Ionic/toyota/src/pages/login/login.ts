@@ -24,17 +24,15 @@ export class LoginPage {
     this.nav.push(RegisterUserPage);
   }
 
-  async login(value: { username: string, password: string, rememberMe: boolean }) {
-    const loading = this.auth.showLoading('Logging in');
+  // async login(value: { username: string, password: string, rememberMe: boolean }) {
+  //   const loading = this.auth.showLoading('Logging in');
 
-    const user = await this.auth.login(value.username, value.password)
-      .catch(() => this.showLoginFailedToast());
-    loading.dismiss();
+    
 
-    if (user === null) {
-      this.showLoginFailedToast();
-    }
-  }
+  //   if (user === null) {
+  //     this.showLoginFailedToast();
+  //   }
+  // }
 
   private showLoginFailedToast() {
     console.log('Login failed');
@@ -46,36 +44,20 @@ export class LoginPage {
   //   this.nav.push('RegisterPage');
   // }
  
-  // public login() {
-  //   this.showLoading()
-  //   this.auth.login(this.registerCredentials).subscribe(allowed => {
-  //     if (allowed) {        
-  //       this.nav.setRoot('HomePage');
-  //     } else {
-  //       this.showError("Access Denied");
-  //     }
-  //   },
-  //     error => {
-  //       this.showError(error);
-  //     });
-  // }
+  public login() {
+    var username= this.formLogin.get('username').value;
+    var password = this.formLogin.get('password').value;
+    this.showLoading()  
+    this.auth.login(username, password);  
+  
+  }
  
-  // showLoading() {
-  //   this.loading = this.loadingCtrl.create({
-  //     content: 'Please wait...',
-  //     dismissOnPageChange: true
-  //   });
-  //   this.loading.present();
-  // }
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000
+    });
+    this.loading.present();
+  }
  
-  // showError(text) {
-  //   this.loading.dismiss();
- 
-  //   let alert = this.alertCtrl.create({
-  //     title: 'Fail',
-  //     subTitle: text,
-  //     buttons: ['OK']
-  //   });
-  //   alert.present(prompt);
-  // }
 }

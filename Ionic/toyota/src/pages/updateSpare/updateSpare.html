@@ -4,18 +4,18 @@
             <ion-icon name="menu"></ion-icon>
           </button>
       <ion-title>
-        Update Accessory
+        Update Spare
       </ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content padding>
-    <form #accessoryForm = "ngForm" (ngSubmit)="updateAccessory(accessoryForm.value)" novalidate>
+    <form #spareForm = "ngForm" (ngSubmit)="updateSpare(spareForm.value)" novalidate>
         <ion-row>
             <ion-col>
                 <ion-list inset>
                     <ion-item>
-                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" [(ngModel)]="accessory.category" #category="ngModel">
+                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" [(ngModel)]="spare.category" #category="ngModel">
                             <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
                                 <div *ngIf="category.errors.required">Category is required.</div>
                                 <div *ngIf="category.errors.minlength">Category must be at least 4 characters long.</div>
@@ -23,10 +23,18 @@
                         </ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="Name" name="name" type="number" required minlength="4" [(ngModel)]="accessory.name" #name="ngModel">
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" [(ngModel)]="spare.name" #name="ngModel">
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
                                 <div *ngIf="name.errors.required">Name is required.</div>
                                 <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Reference" name="reference" type="text" required minlength="4" [(ngModel)]="spare.reference" #reference="ngModel">
+                            <div *ngIf="reference.invalid && (reference.dirty || reference.touched)" class="alert alert-danger">
+                                <div *ngIf="reference.errors.required">Reference is required.</div>
+                                <div *ngIf="reference.errors.minlength">Reference must be at least 4 characters long.</div>
                             </div>
                         </ion-input>
                     </ion-item>
@@ -35,7 +43,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <button ion-button color="primary" full type="submit" [disabled]="!accessoryForm.form.valid">Save</button>
+                <button ion-button color="primary" full type="submit" [disabled]="!spareForm.form.valid">Save</button>
             </ion-col>
         </ion-row>
     </form>

@@ -158,11 +158,12 @@ class ClientResources {
 		System.out.println("llega????");
 		http.csrf().disable()
 			.authorizeRequests()
+			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()//allow CORS option calls
 			.antMatchers("/users").permitAll()
 			.antMatchers("/accessories").permitAll()
 			//.antMatchers("/cardealership").hasAnyRole("ADMIN")
 			.antMatchers("/accessories/**").hasAnyRole("ADMIN")
-			.antMatchers("/accessory").permitAll()
+			.antMatchers("/accessory").hasAnyRole("ADMIN")
 			.antMatchers("/accessory/**").permitAll()
 			.antMatchers("/suppliers").hasAnyRole("ADMIN")
 			.antMatchers("/spares/**").permitAll()
@@ -170,6 +171,7 @@ class ClientResources {
 			.antMatchers("/spare/**").permitAll()
 			.antMatchers("/spare").permitAll()
 			.antMatchers("/models").permitAll()
+			.antMatchers("/model").hasAnyRole("ADMIN")
 			.antMatchers("/model/**").hasAnyRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE, "/model/**").hasAnyRole("ADMIN")
 			.antMatchers("/supplier").permitAll()

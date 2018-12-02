@@ -25,30 +25,15 @@ export class UpdateModelPage {
   }
 
   updateModel(form: NgForm){
-    // console.log(this.params.data);
-    // var model = {
-    //   name: this.formUpdate.get('name').value,
-    //   power: this.formUpdate.get('power').value,
-    //   fuel: this.formUpdate.get('fuel').value,
-    //   price: this.formUpdate.get('price').value
-    // }
-    // this.userService.updateModel(form, this.model.id).subscribe(
-    //   result => {
-    //     console.log(data);
-    //     const toast = this.toastCtrl.create({
-    //       message: 'Model was updated successfully',
-    //       duration: 3000
-    //     });
-    //     toast.present();
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
     this.userService.updateModel(form, this.model.id).subscribe(
       result => {
         this.navParams.get("parentPage").ionViewDidLoad();
         this.navCtrl.pop();
+        const toast = this.toastCtrl.create({
+          message: 'Model was updated successfully',
+          duration: 3000
+        });
+        toast.present();
       },
       error => console.log(error)
     );

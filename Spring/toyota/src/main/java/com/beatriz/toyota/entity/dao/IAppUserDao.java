@@ -6,5 +6,5 @@ import com.beatriz.toyota.entity.models.AppUser;
 
 
 public interface IAppUserDao extends CrudRepository<AppUser, Long>{
-	public AppUser findUserByName(String name);
+	public AppUser findUserByUsername(String username);
 }

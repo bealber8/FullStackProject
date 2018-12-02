@@ -20,7 +20,7 @@ import {SparesPage} from '../pages/spares/spares';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = null;
+  rootPage:any = HomePage;
   authorities: string[] = [];
 
   pages: Array<{title: string, component: any}>;
@@ -34,36 +34,37 @@ export class MyApp {
       {title: 'Models', component: ModelsPage},
       {title: 'Accessories', component: AccessoriesPage},
       {title: 'Spares', component: SparesPage},
-      {title: 'Manage Models and Accessories', component: ManageAppPage},
+      {title: 'Manage App', component: ManageAppPage},
       {title: 'Future Models', component: FutureModelsPage},
       {title: 'Mythical Models', component: MythicalModelsPage}
     ];
+  }
 
-    provider.authorities.subscribe(authorities => {
-      if (!location.hash || !location.hash.startsWith('#/change/')) {
-        if (authorities && authorities.length > 0) {
-          this.authorities = authorities;
-          this.rootPage = HomePage;
-          this.initializeApp();
-        }
-        else {
-          this.authorities = null
-          this.rootPage = LoginPage;
-        }
-      }
-    });
+  //   provider.authorities.subscribe(authorities => {
+  //     if (!location.hash || !location.hash.startsWith('#/change/')) {
+  //       if (authorities && authorities.length > 0) {
+  //         this.authorities = authorities;
+  //         this.rootPage = HomePage;
+  //         this.initializeApp();
+  //       }
+  //       else {
+  //         this.authorities = null
+  //         this.rootPage = LoginPage;
+  //       }
+  //     }
+  //   });
 
-    this.checkLogin();
+  //   this.checkLogin();
     
-  }
+  // }
 
-  private checkLogin() {
-    if (!location.hash || !location.hash.startsWith('#/change/')) {
-      this.provider.checkLogin().catch(() => {
-        this.rootPage = LoginPage;
-      });
-    }
-  }
+  // private checkLogin() {
+  //   if (!location.hash || !location.hash.startsWith('#/change/')) {
+  //     this.provider.checkLogin().catch(() => {
+  //       this.rootPage = LoginPage;
+  //     });
+  //   }
+  // }
 
   initializeApp(){
     this.platform.ready().then(() => {

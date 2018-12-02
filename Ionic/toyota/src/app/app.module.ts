@@ -14,14 +14,14 @@ import { ModelsPage } from '../pages/models/models';
 import { AccessoriesPage} from '../pages/accessories/accessories';
 import { ManageAppPage } from '../pages/manageApp/manageApp';
 import { InsertModelsPage } from '../pages/insertModels/insertModels';
-import { UpdateModelsPage } from '../pages/updateModels/updateModels';
 import { UpdateModelPage } from '../pages/updateModel/updateModel';
 import { ManageModelsPage } from '../pages/manageModels/manageModels';
 import { InsertAccessoriesPage } from '../pages/insertAccessories/insertAccessories';
-import { UpdateAccessoriesPage } from '../pages/updateAccessories/updateAccessories';
 import { UpdateAccessoryPage } from '../pages/updateAccessory/updateAccessory';
 import { ManageAccessoriesPage } from '../pages/manageAccessories/manageAccessories';
+import {ManageSparesPage} from '../pages/manageSpares/manageSpares';
 import { InsertSparesPage } from '../pages/insertSpares/insertSpares'
+import {UpdateSparePage} from '../pages/updateSpare/updateSpare';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { FutureModelsPage } from '../pages/futureModels/futureModels';
 import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
@@ -40,13 +40,13 @@ import {SparesPage} from '../pages/spares/spares';
     ManageModelsPage,
     FutureModelsPage,
     MythicalModelsPage,
-    UpdateModelsPage,
     UpdateModelPage,
     InsertAccessoriesPage,
     ManageAccessoriesPage,
-    UpdateAccessoriesPage,
     UpdateAccessoryPage,
+    ManageSparesPage,
     InsertSparesPage,
+    UpdateSparePage,
     TabsPage,
     SparesPage
   ],
@@ -68,13 +68,13 @@ import {SparesPage} from '../pages/spares/spares';
     ManageModelsPage,
     FutureModelsPage,
     MythicalModelsPage,
-    UpdateModelsPage,
     UpdateModelPage,
     InsertAccessoriesPage,
     ManageAccessoriesPage,
-    UpdateAccessoriesPage,
     UpdateAccessoryPage,
+    ManageSparesPage,
     InsertSparesPage,
+    UpdateSparePage,
     TabsPage,
     SparesPage
   ],

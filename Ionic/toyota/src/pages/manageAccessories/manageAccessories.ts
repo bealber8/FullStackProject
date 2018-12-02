@@ -38,6 +38,8 @@ export class ManageAccessoriesPage {
   deleteAccessory(id){
     this.servicio.deleteAccessory(id).subscribe(
       (data) =>{
+        this.accessories.splice(
+          this.accessories.map(item => item.id).indexOf(id), 1)
         console.log(data);
         const toast = this.toastCtrl.create({
           message: 'Accessory was deleted successfully',
