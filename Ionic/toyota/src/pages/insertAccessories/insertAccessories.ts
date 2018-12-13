@@ -12,7 +12,8 @@ export class InsertAccessoriesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
       category: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      name: ['', Validators.compose([Validators.maxLength(60), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      name: ['', Validators.compose([Validators.maxLength(60), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      suppliers: ['', Validators.required]
     });
   }
   
@@ -20,7 +21,8 @@ export class InsertAccessoriesPage {
   postAccessory(){
     var accessory = {
       category: this.formInsert.get('category').value,
-      name: this.formInsert.get('name').value
+      name: this.formInsert.get('name').value,
+      suppliers: this.formInsert.get('suppliers').value
     }
     console.log(accessory);
     this.userService.postAccessory(accessory).subscribe(

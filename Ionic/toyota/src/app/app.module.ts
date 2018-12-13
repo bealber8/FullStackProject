@@ -26,6 +26,8 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 import { FutureModelsPage } from '../pages/futureModels/futureModels';
 import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
 import {SparesPage} from '../pages/spares/spares';
+import { FuturePage } from '../pages/future/future';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import {SparesPage} from '../pages/spares/spares';
     InsertSparesPage,
     UpdateSparePage,
     TabsPage,
-    SparesPage
+    SparesPage,
+    FuturePage
   ],
   imports: [
     BrowserModule,
@@ -76,11 +79,13 @@ import {SparesPage} from '../pages/spares/spares';
     InsertSparesPage,
     UpdateSparePage,
     TabsPage,
-    SparesPage
+    SparesPage,
+    FuturePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider
   ]

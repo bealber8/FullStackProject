@@ -15,18 +15,20 @@
             <ion-col>
                 <ion-list inset>
                     <ion-item>
-                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" [(ngModel)]="accessory.category" #category="ngModel">
+                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" pattern="[a-zA-Z ]*" [(ngModel)]="accessory.category" #category="ngModel"></ion-input>
                             <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
                                 <div *ngIf="category.errors.required">Category is required.</div>
                                 <div *ngIf="category.errors.minlength">Category must be at least 4 characters long.</div>
+                                <div *ngIf="category.errors.pattern">It is not a correct category</div>
                             </div>
-                        </ion-input>
+                        
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="Name" name="name" type="number" required minlength="4" [(ngModel)]="accessory.name" #name="ngModel">
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" pattern="[a-zA-Z ]*" [(ngModel)]="accessory.name" #name="ngModel">
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
                                 <div *ngIf="name.errors.required">Name is required.</div>
                                 <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                                <div *ngIf="name.errors.pattern">It is not a correct accessory</div>
                             </div>
                         </ion-input>
                     </ion-item>
@@ -35,7 +37,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <button ion-button color="primary" full type="submit" [disabled]="!accessoryForm.form.valid">Save</button>
+                <button ion-button color="gray" full type="submit" [disabled]="!accessoryForm.form.valid">Save</button>
             </ion-col>
         </ion-row>
     </form>

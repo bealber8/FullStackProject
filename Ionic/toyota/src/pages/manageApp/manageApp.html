@@ -3,14 +3,19 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>
+    <ion-title id="title">
       Manage APP
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-grid>
+    <ion-tabs>
+        <ion-tab [root]="tab1Root" tabTitle="Models" tabIcon="car"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="Accessories" tabIcon="speedometer"></ion-tab>
+        <ion-tab [root]="tab3Root" tabTitle="Spares" tabIcon="build"></ion-tab>
+      </ion-tabs>
+    <!-- <ion-grid>
         <ion-row>
           <ion-col col-12>
             <button class = "button" ion-button block color='gray' (click) = "manageModels()">Manage Models</button>
@@ -22,5 +27,5 @@
             <button class = "button" ion-button block color='gray' (click) = "manageSpares()">Manage Spares</button>
           </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 </ion-content>

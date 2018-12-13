@@ -24,9 +24,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Table(name = "toyota_models")
 public class Model implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -104,10 +101,6 @@ public class Model implements Serializable{
 
 	public void setCarDealership(CarDealership carDealership) {
 		this.carDealership = carDealership;
-	}
-
-	public Set<Suppliers> getSuppliers() {
-		return suppliers;
 	}
 
 	public void setSuppliers(Set<Suppliers> suppliers) {

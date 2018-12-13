@@ -16,9 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
-
-
 @Entity
 @Table(name = "toyota_users")
 public class AppUser implements Serializable{
@@ -51,7 +48,7 @@ public class AppUser implements Serializable{
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="carDealership_id", nullable = false)
+	@JoinColumn(name="car_dealership_id", nullable = false)
 	private CarDealership cardealership;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

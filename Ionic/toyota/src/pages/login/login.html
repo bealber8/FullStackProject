@@ -28,7 +28,7 @@
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Password:</ion-label>
-                    <ion-input formControlName="password" type = "text" placeholder = "password"></ion-input>
+                    <ion-input formControlName="password" type = "password" placeholder = "password"></ion-input>
                 </ion-item>
                 <ion-item *ngIf="formLogin.get('password').errors && formLogin.get('password').dirty">
                     <p color="danger" ion-text *ngIf="formLogin.get('password').hasError('pattern')">It is not a correct password</p>
@@ -36,12 +36,14 @@
                 </ion-item>
             </ion-list>
             <div padding>
-                <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formLogin.invalid">Save Model</button>
+                <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formLogin.invalid">Login</button>
               </div>
           </form>
         </ion-row>
         <ion-row>
-            <button ion-button color='gray'(click) = "registerUser()">Register now</button>
+            <ion-col col-12 align-self-center>
+                <button ion-button round color='gray'(click) = "registerUser()">Register now</button>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

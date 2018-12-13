@@ -41,8 +41,6 @@ public class Spares implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "car_dealership_id", nullable = false)
 	CarDealership carDealership;
-
-	//, referencedColumnName = "id"
 	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {

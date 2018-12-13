@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { SQLite } from '@ionic-native/sqlite';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ModelsPage} from '../pages/models/models';
@@ -13,7 +13,7 @@ import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
 import { TabsPage } from '../pages/tabs/tabs';
 import {UserServiceProvider} from '../providers/user-service/user-service';
 import {SparesPage} from '../pages/spares/spares';
-
+import { FuturePage } from '../pages/future/future';
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,7 +25,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public provider: UserServiceProvider) {
+  constructor(public platform: Platform, public toastCtrl: ToastController, public statusBar: StatusBar, public splashScreen: SplashScreen, public provider: UserServiceProvider,  public sqlite: SQLite) {
     this.initializeApp();
 
     this.pages = [
@@ -35,6 +35,7 @@ export class MyApp {
       {title: 'Accessories', component: AccessoriesPage},
       {title: 'Spares', component: SparesPage},
       {title: 'Manage App', component: ManageAppPage},
+      {title: 'Future Models', component: FuturePage},
       {title: 'Future Models', component: FutureModelsPage},
       {title: 'Mythical Models', component: MythicalModelsPage}
     ];
@@ -71,6 +72,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      // this.createDatabase();
       this.splashScreen.hide();
     });
   }
@@ -80,5 +82,28 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  // private createDatabase(){
+  //   this.sqlite.create({
+  //     name: 'data.db',
+  //     location: 'default'
+  //   })
+  //   .then((db) => {
+  //     this.provider.setDatabase(db);
+  //     return this.provider.createTable();
+  //   })
+  //   .then(() => {
+  //     this.splashScreen.hide();
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //     console.error(error);
+  //     const toast = this.toastCtrl.create({
+  //       message: 'no furula: ' + JSON.stringify(error),
+  //       duration: 3000
+  //     });
+  //     toast.present();
+  //   })
+  // }
 }
 

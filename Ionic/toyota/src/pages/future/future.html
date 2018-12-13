@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Future Models
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item *ngFor = "let model of models">
+                <!-- <h2>{{model.name}}</h2>
+                <p>{{model.description}}</p> -->
+                <p>{{model.image}}</p>
+                <!-- <img [src]="model.image"> -->
+                <!-- <img style="height:120px; width:110px" [src]="domSanitizer.bypassSecurityTrustUrl(model.image)" alt="Select Image"/> -->
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+</ion-content>

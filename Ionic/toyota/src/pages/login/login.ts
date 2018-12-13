@@ -3,6 +3,7 @@ import { NavController, AlertController, LoadingController, Loading, IonicPage }
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {RegisterUserPage } from '../registerUser/registerUser';
+import { HomePage } from '../home/home';
  
 @Component({
   selector: 'page-login',
@@ -21,7 +22,7 @@ export class LoginPage {
   }
 
   registerUser(){
-    this.nav.push(RegisterUserPage);
+    this.nav.push(RegisterUserPage, {"parentPage": this});
   }
 
   // async login(value: { username: string, password: string, rememberMe: boolean }) {
@@ -49,6 +50,7 @@ export class LoginPage {
     var password = this.formLogin.get('password').value;
     this.showLoading()  
     this.auth.login(username, password);  
+    this.nav.setRoot(HomePage);
   
   }
  

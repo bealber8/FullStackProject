@@ -48,7 +48,18 @@ export class ManageAccessoriesPage {
         toast.present();
       },
       (error) =>{
-        console.log(error);
+        if(error === 401){
+          console.log('hola');
+        }
+        else{
+          //console.log(error.status);
+        }
+        // const toast = this.toastCtrl.create({
+        //   message: 'You do not have administrator permissions' + error,
+        //   duration: 3000
+        // });
+        // toast.present();
+        
       }
     );
   }

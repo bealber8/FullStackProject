@@ -13,7 +13,8 @@ export class InsertSparesPage {
     this.formInsert = this.fb.group({
       category: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       name: ['', Validators.compose([Validators.maxLength(60), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      reference: ['', Validators.compose([Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9]*'), Validators.required])]
+      reference: ['', Validators.compose([Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9]*'), Validators.required])],
+      suppliers: ['', Validators.required]
     });
   }
   
@@ -22,7 +23,8 @@ export class InsertSparesPage {
     var spare = {
       category: this.formInsert.get('category').value,
       name: this.formInsert.get('name').value,
-      reference: this.formInsert.get('reference').value
+      reference: this.formInsert.get('reference').value,
+      suppliers: this.formInsert.get('suppliers').value
     }
     console.log(spare);
     this.userService.postSpares(spare).subscribe(

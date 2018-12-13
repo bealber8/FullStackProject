@@ -74,7 +74,9 @@ public class Accessories implements Serializable{
 		this.name = name;
 	}
 
-
+	public void setCarDealership(CarDealership carDealership) {
+		this.carDealership = carDealership;
+	}
 
 	public void setCardealership(CarDealership carDealership) {
 		this.carDealership = carDealership;

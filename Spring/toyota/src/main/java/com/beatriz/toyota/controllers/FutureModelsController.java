@@ -1,5 +1,10 @@
 package com.beatriz.toyota.controllers;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +33,7 @@ public class FutureModelsController {
 	}
 	
 	@GetMapping("/futuremodels/{id}")
-	public ResponseEntity<FutureModels> getOne(@PathVariable(value = "id")long id){
+	public  ResponseEntity<FutureModels> getOne(@PathVariable(value = "id")long id){
 		try {
 			FutureModels model = modelService.getModel(id);
             if (model != null) {
@@ -41,6 +46,41 @@ public class FutureModelsController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 		
+	}
+	
+	@GetMapping("/futuremodelsimage/{id}")
+	public byte[] getOneImage(@PathVariable(value = "id")long id){
+		FutureModels model = modelService.getModel(id);
+		
+		writeImageFile(model.getImage());
+		
+		return model.getImage();
+		/*
+		try {
+			FutureModels model = modelService.getModel(id);
+            if (model != null) {
+                return ResponseEntity.status(HttpStatus.OK).body(model);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }*/
+		
+	}
+	
+	void writeImageFile(byte[] bytes) {
+		byte[] data = Base64.getDecoder().decode(bytes);
+		try(OutputStream stream = new FileOutputStream("otrapruebita.jpg")){
+			stream.write(data);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	@PostMapping("/futuremodel")

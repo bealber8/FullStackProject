@@ -30,6 +30,13 @@
                 <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('pattern')">It is not a correct accessory</p>
                 <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('required')">Field is required</p>
             </ion-item>
+            <ion-item>
+                <ion-label stacked>Suppliers:</ion-label>
+                <ion-input formControlName="suppliers" type = "number" placeholder = "Suppliers"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('suppliers').errors && formInsert.get('suppliers').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('suppliers').hasError('required')">Field is required</p>
+            </ion-item>
         </ion-list>
         <div padding>
             <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formInsert.invalid">Save Accessory</button>
