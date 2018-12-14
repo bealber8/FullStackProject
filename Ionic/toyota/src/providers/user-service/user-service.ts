@@ -132,6 +132,34 @@ export class UserServiceProvider {
     return this.db.executeSql(sql, [id]);
   }
 
+  getSuppliers(){
+    let sql = 'SELECT * FROM suppliers';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let suppliers = [];
+      for(let index = 0; index < response.rows.length; index++){
+        suppliers.push(response.rows.item(index));
+      }
+      return Promise.resolve(suppliers);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postSuppliers(nif: any, name: any, direction: any, telephone: any){
+    let sql = 'INSERT INTO suppliers(nif, name, direction, telephone) VALUES(?,?,?,?)';
+    return this.db.executeSql(sql, [nif, name, direction, telephone]);
+  }
+
+  updateSupplier(supplier:any, id: number){
+    let sql = 'UPDATE suppliers SET nif=?, name=?, direction=?, telephone=? WHERE id=?';
+    return this.db.executeSql(sql, [supplier.nif, supplier.name, supplier.direction, supplier.telephone, id]);
+  }
+
+  deleteSupplier(id){
+    let sql = 'DELETE FROM suppliers WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
   login(username, password){
     this.username = username;
     this.password = password;

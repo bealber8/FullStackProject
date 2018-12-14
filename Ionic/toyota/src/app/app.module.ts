@@ -31,6 +31,9 @@ import { SQLite } from '@ionic-native/sqlite';
 import { InsertCardealershipPage } from '../pages/insertCardealership/insertCardealership';
 import { ManageCardealershipPage } from '../pages/manageCardealership/manageCardealership';
 import { UpdateCardealershipPage } from '../pages/updateCardealership/updateCardealership';
+import { ManageSuppliersPage } from '../pages/manageSuppliers/manageSuppliers';
+import { InsertSuppliersPage } from '../pages/insertSuppliers/insertSuppliers';
+import { UpdateSuppliersPage } from '../pages/updateSuppliers/updateSuppliers';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { UpdateCardealershipPage } from '../pages/updateCardealership/updateCard
     FuturePage,
     InsertCardealershipPage,
     ManageCardealershipPage,
-    UpdateCardealershipPage
+    UpdateCardealershipPage,
+    ManageSuppliersPage,
+    InsertSuppliersPage,
+    UpdateSuppliersPage
   ],
   imports: [
     BrowserModule,
@@ -89,7 +95,10 @@ import { UpdateCardealershipPage } from '../pages/updateCardealership/updateCard
     FuturePage,
     InsertCardealershipPage,
     ManageCardealershipPage,
-    UpdateCardealershipPage
+    UpdateCardealershipPage,
+    ManageSuppliersPage,
+    InsertSuppliersPage,
+    UpdateSuppliersPage
   ],
   providers: [
     StatusBar,

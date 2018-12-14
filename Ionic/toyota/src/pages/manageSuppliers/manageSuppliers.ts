@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
 import { Cardealership } from '../../models/car';
-import {InsertAccessoriesPage} from '../insertAccessories/insertAccessories';
-import { UpdateAccessoryPage } from '../updateAccessory/updateAccessory';
 import { InsertCardealershipPage } from '../insertCardealership/insertCardealership';
 import { UpdateCardealershipPage } from '../updateCardealership/updateCardealership';
+import { InsertSuppliersPage } from '../insertSuppliers/insertSuppliers';
+import { Supplier } from '../../models/supplier';
+import { UpdateSuppliersPage } from '../updateSuppliers/updateSuppliers';
 
 @Component({
   selector: 'page-manageSuppliers',
@@ -19,9 +20,9 @@ export class ManageSuppliersPage {
   }
 
   ionViewDidLoad(){
-    this.servicio.getCardealership().then(
+    this.servicio.getSuppliers().then(
       (data) => {
-        this.cars = data;
+        this.suppliers = data;
       },
       (error) => {
         console.error(error);
@@ -29,22 +30,22 @@ export class ManageSuppliersPage {
     )
   }
 
-  insertCar(){
-    this.navCtrl.push(InsertCardealershipPage, {"parentPage": this});
+  insertSupplier(){
+    this.navCtrl.push(InsertSuppliersPage, {"parentPage": this});
   }
 
-  updateCar(car: Cardealership){
-    this.navCtrl.push(UpdateCardealershipPage, {car: car, "parentPage": this});
+  updateSupplier(supplier: Supplier){
+    this.navCtrl.push(UpdateSuppliersPage, {supplier: supplier, "parentPage": this});
   }
 
-  deleteCar(id){
-    this.servicio.deleteCardealership(id).then(
+  deleteSupplier(id){
+    this.servicio.deleteSupplier(id).then(
       (data) =>{
-        this.cars.splice(
-          this.cars.map(item => item.id).indexOf(id), 1)
+        this.suppliers.splice(
+          this.suppliers.map(item => item.id).indexOf(id), 1)
         console.log(data);
         const toast = this.toastCtrl.create({
-          message: 'Car dealership was deleted successfully',
+          message: 'Supplier was deleted successfully',
           duration: 3000
         });
         toast.present();

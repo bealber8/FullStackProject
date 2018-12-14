@@ -5,6 +5,7 @@ import { ManageAccessoriesPage } from '../manageAccessories/manageAccessories';
 import { ManageSparesPage } from '../manageSpares/manageSpares';
 import { TabsPage } from '../tabs/tabs';
 import { ManageCardealershipPage } from '../manageCardealership/manageCardealership';
+import { ManageSuppliersPage } from '../manageSuppliers/manageSuppliers';
 @Component({
   selector: 'page-manageApp',
   templateUrl: 'manageApp.html'
@@ -15,8 +16,8 @@ export class ManageAppPage {
   tab3Root: any = ManageSparesPage;
   tab4Root: any = ManageCardealershipPage;
   tab5Root: any = ManageSuppliersPage;
-  tab6Root: any = ManageFutureModelsPage;
-  tab7Root: any = ManageMythicalModelsPage;
+  // tab6Root: any = ManageFutureModelsPage;
+  // tab7Root: any = ManageMythicalModelsPage;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
