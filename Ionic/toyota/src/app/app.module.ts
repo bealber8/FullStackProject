@@ -28,6 +28,9 @@ import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
 import {SparesPage} from '../pages/spares/spares';
 import { FuturePage } from '../pages/future/future';
 import { SQLite } from '@ionic-native/sqlite';
+import { InsertCardealershipPage } from '../pages/insertCardealership/insertCardealership';
+import { ManageCardealershipPage } from '../pages/manageCardealership/manageCardealership';
+import { UpdateCardealershipPage } from '../pages/updateCardealership/updateCardealership';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { SQLite } from '@ionic-native/sqlite';
     UpdateSparePage,
     TabsPage,
     SparesPage,
-    FuturePage
+    FuturePage,
+    InsertCardealershipPage,
+    ManageCardealershipPage,
+    UpdateCardealershipPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,10 @@ import { SQLite } from '@ionic-native/sqlite';
     UpdateSparePage,
     TabsPage,
     SparesPage,
-    FuturePage
+    FuturePage,
+    InsertCardealershipPage,
+    ManageCardealershipPage,
+    UpdateCardealershipPage
   ],
   providers: [
     StatusBar,

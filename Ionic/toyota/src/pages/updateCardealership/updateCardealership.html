@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Car Dealership
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form #carForm = "ngForm" (ngSubmit)="updateCar(carForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Direction" name="direction" type="text" required minlength="4" pattern="[a-zA-Z0-9,áéíóú ]*" [(ngModel)]="car.direction" #direction="ngModel"></ion-input>
+                            <div *ngIf="direction.invalid && (direction.dirty || direction.touched)" class="alert alert-danger">
+                                <div *ngIf="direction.errors.required">direction is required.</div>
+                                <div *ngIf="direction.errors.minlength">direction must be at least 4 characters long.</div>
+                                <div *ngIf="direction.errors.pattern">It is not a correct direction</div>
+                            </div>
+                        
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Telephone" name="telephone" type="text" required minlength="4" pattern="[0-9-()+ ]*" [(ngModel)]="car.telephone" #telephone="ngModel">
+                            <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="alert alert-danger">
+                                <div *ngIf="telephone.errors.required">Name is required.</div>
+                                <div *ngIf="telephone.errors.minlength">Name must be at least 4 characters long.</div>
+                                <div *ngIf="telephone.errors.pattern">It is not a correct accessory</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="gray" full type="submit" [disabled]="!carForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+    </form>
+  </ion-content>

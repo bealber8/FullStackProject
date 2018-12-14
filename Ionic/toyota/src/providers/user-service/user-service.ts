@@ -4,7 +4,6 @@ import {ReplaySubject, Observable} from 'rxjs';
 import { Loading, LoadingController, ToastController } from 'ionic-angular';
 import { catchError } from 'rxjs/operators';
 import { SQLiteObject, SQLite } from '@ionic-native/sqlite';
-import {} from '../../assets/imgs/1.jpg'
 /*
   Generated class for the UserServiceProvider provider.
 
@@ -94,12 +93,19 @@ export class UserServiceProvider {
                         'FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE NO ACTION, ' +
                         'FOREIGN KEY (spare_id) REFERENCES spares (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
     this.db.executeSql(sqlSupp_spare, []);
+    let sqlFutureModels = '(CREATE TABLE IF NOT EXISTS futuremodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, '+
+                          'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    this.db.executeSql(sqlFutureModels, []);
+    let sqlMythicalModels = '(CREATE TABLE IF NOT EXISTS mythicalmodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, '+
+                        'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    this.db.executeSql(sqlMythicalModels, []);
+
     // let sqlinsert = 'INSERT INTO prueba(direction, telephone, image) VALUES("Las Palmas", "789456123", "../../assets/imgs/1.jpg")';
     // return this.db.executeSql(sqlinsert, []);
   }
 
   getCardealership(){
-    let sql = 'SELECT * FROM prueba';
+    let sql = 'SELECT * FROM cardealership';
     return this.db.executeSql(sql, [])
     .then(response => {
       let cardealership = [];
@@ -109,6 +115,21 @@ export class UserServiceProvider {
       return Promise.resolve(cardealership);
     })
     .catch(error => Promise.reject(error));
+  }
+
+  postCardealership(dir: any, tel: any){
+    let sql = 'INSERT INTO cardealership(direction, telephone) VALUES(?,?)';
+    return this.db.executeSql(sql, [dir, tel]);
+  }
+
+  updateCardealership(car:any, id: number){
+    let sql = 'UPDATE cardealership SET direction=?, telephone=? WHERE id=?';
+    return this.db.executeSql(sql, [car.direction, car.telephone, id]);
+  }
+
+  deleteCardealership(id){
+    let sql = 'DELETE FROM cardealership WHERE id=?';
+    return this.db.executeSql(sql, [id]);
   }
 
   login(username, password){
