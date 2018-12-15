@@ -34,6 +34,9 @@ import { UpdateCardealershipPage } from '../pages/updateCardealership/updateCard
 import { ManageSuppliersPage } from '../pages/manageSuppliers/manageSuppliers';
 import { InsertSuppliersPage } from '../pages/insertSuppliers/insertSuppliers';
 import { UpdateSuppliersPage } from '../pages/updateSuppliers/updateSuppliers';
+import { ManageFutureModelsPage } from '../pages/manageFutureModels/manageFutureModels';
+import { InsertFutureModelPage } from '../pages/insertFutureModels/insertFutureModel';
+import { UpdateFutureModelPage } from '../pages/updateFutureModel/updateFutureModel';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { UpdateSuppliersPage } from '../pages/updateSuppliers/updateSuppliers';
     UpdateCardealershipPage,
     ManageSuppliersPage,
     InsertSuppliersPage,
-    UpdateSuppliersPage
+    UpdateSuppliersPage,
+    ManageFutureModelsPage,
+    InsertFutureModelPage,
+    UpdateFutureModelPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +104,10 @@ import { UpdateSuppliersPage } from '../pages/updateSuppliers/updateSuppliers';
     UpdateCardealershipPage,
     ManageSuppliersPage,
     InsertSuppliersPage,
-    UpdateSuppliersPage
+    UpdateSuppliersPage,
+    ManageFutureModelsPage,
+    InsertFutureModelPage,
+    UpdateFutureModelPage
   ],
   providers: [
     StatusBar,

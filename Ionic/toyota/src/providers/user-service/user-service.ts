@@ -72,13 +72,13 @@ export class UserServiceProvider {
     this.db.executeSql(sqlCardealership, []);
     let sqlSuppliers = 'CREATE TABLE IF NOT EXISTS suppliers(id INTEGER PRIMARY KEY AUTOINCREMENT, nif TEXT, name TEXT, direction TEXT, telephone TEXT)';
     this.db.executeSql(sqlSuppliers, []);
-    let sqlModels = '(CREATE TABLE IF NOT EXISTS models(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, power INTEGER, fuel TEXT, price REAL, image TEXT, ' +
+    let sqlModels = '(CREATE TABLE IF NOT EXISTS models(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, power INTEGER, fuel TEXT, price REAL, image TEXT, supplier_id INTEGER, ' +
                       'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
     this.db.executeSql(sqlModels, []);
-    let sqlAccessories = '(CREATE TABLE IF NOT EXISTS accessories(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, image TEXT, ' +
+    let sqlAccessories = '(CREATE TABLE IF NOT EXISTS accessories(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, image TEXT, supplier_id INTEGER, ' +
                         'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
     this.db.executeSql(sqlAccessories, []);
-    let sqlSpares = '(CREATE TABLE IF NOT EXISTS spares(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, reference TEXT, image TEXT, ' +
+    let sqlSpares = '(CREATE TABLE IF NOT EXISTS spares(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, reference TEXT, image TEXT, supplier_id INTEGER, ' +
                     'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
     this.db.executeSql(sqlSpares, []);
     let sqlSupp_models = '(CREATE TABLE IF NOT EXISTS supp_models(supplier_id INTEGER, model_id INTEGER, PRIMARY KEY (supplier_id, model_id), '+
@@ -157,6 +157,146 @@ export class UserServiceProvider {
 
   deleteSupplier(id){
     let sql = 'DELETE FROM suppliers WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  getModelsSQL(){
+    let sql = 'SELECT * FROM models';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let models = [];
+      for(let index = 0; index < response.rows.length; index++){
+        models.push(response.rows.item(index));
+      }
+      return Promise.resolve(models);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postModelSQL(model:any){
+    let sql = 'INSERT INTO models(name, power, fuel, price, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?,?,?)';
+    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.carId]);
+  }
+
+  updateModelSQL(model:any, id: number){
+    let sql = 'UPDATE models SET name=?, power=?, fuel=?, price=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.carId, id]);
+  }
+
+  deleteModelsSQL(id: any){
+    let sql = 'DELETE FROM models WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  getAccessoriesSQL(){
+    let sql = 'SELECT * FROM accessories';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let accessories = [];
+      for(let index = 0; index < response.rows.length; index++){
+        accessories.push(response.rows.item(index));
+      }
+      return Promise.resolve(accessories);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postAccessorySQL(accessory: any){
+    let sql = 'INSERT INTO accessories(category, name, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?)';
+    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.carId]);
+  }
+
+  updateAccessorySQL(accessory: any, id: number){
+    let sql = 'UPDATE accessories SET category=?, name=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.carId, id]);
+  }
+
+  deleteAccessorySQL(id){
+    let sql = 'DELETE FROM accessories WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  getSparesSQL(){
+    let sql = 'SELECT * FROM spares';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let spares = [];
+      for(let index = 0; index < response.rows.length; index++){
+        spares.push(response.rows.item(index));
+      }
+      return Promise.resolve(spares);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postSparesSQL(spare: any){
+    let sql = 'INSERT INTO spares(category, name, reference, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?,?)';
+    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.carId]);
+  }
+
+  updateSpareSQL(spare: any, id:number){
+    let sql = 'UPDATE spares SET category=?, name=?, reference=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.carId, id]);
+  }
+
+  deleteSpareSQL(id){
+    let sql = 'DELETE FROM spares WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  getFutureModelsSQL(){
+    let sql = 'SELECT * FROM futuremodels';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let futuremodels = [];
+      for(let index = 0; index < response.rows.length; index++){
+        futuremodels.push(response.rows.item(index));
+      }
+      return Promise.resolve(futuremodels);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postFutureModelSQL(model: any){
+    let sql = 'INSERT INTO futuremodels(name, description, image, cardealership_id) VALUES(?,?,?,?)';
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.carId]);
+  }
+
+  updateFutureModelSQL(model: any, id: number){
+    let sql = 'UPDATE futuremodels SET name=?, description=?, image=?, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [model.name, model.reference, model.image, model.carId, id]);
+  }
+
+  deleteFutureModelSQL(id){
+    let sql = 'DELETE FROM futuremodels WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  getMythicalModelsSQL(){
+    let sql = 'SELECT * FROM mythicalmodels';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let mythicalmodels = [];
+      for(let index = 0; index < response.rows.length; index++){
+        mythicalmodels.push(response.rows.item(index));
+      }
+      return Promise.resolve(mythicalmodels);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  postMythicalModelSQL(model: any){
+    let sql = 'INSERT INTO mythicalmodels(name, description, image, cardealership_id) VALUES(?,?,?,?)';
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.carId]);
+  }
+
+  updateMythicalModelSQL(model: any, id: number){
+    let sql = 'UPDATE mythicalmodels SET name=?, description=?, image=?, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [model.name, model.reference, model.image, model.carId, id]);
+  }
+
+  deleteMythicalModelSQL(id){
+    let sql = 'DELETE FROM mythicalmodels WHERE id=?';
     return this.db.executeSql(sql, [id]);
   }
 
