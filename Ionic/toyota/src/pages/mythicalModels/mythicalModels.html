@@ -11,21 +11,22 @@
 
 <ion-content padding>
     
-    <ion-card>
-      <img src="../../assets/imgs/toyota-ae86 (2).JPG"/>
+    <ion-card *ngFor = "let model of models">
+      <img src="{{model.image}}"/>
       <ion-card-content>
         <ion-card-title>
-          Toyota AE86
+          {{model.name}}
           </ion-card-title>
         <p text-justify>
-          The inspiration for the Toyota GT86, the AE86 versions of the Toyota Sprinter Trueno and Corolla Levin 
+          {{model.description}}
+          <!-- The inspiration for the Toyota GT86, the AE86 versions of the Toyota Sprinter Trueno and Corolla Levin 
           have become legends in the compact tuner world. Used as a basis for everything from drift cars to time attack monsters, 
           the AE86 in stock form came with a 1.6-liter four-cylinder engine that made between 112 and 128 hp depending on region and year.
-          Available as a coupe or a hatchback, the lightweight rear-wheel drive-car was the definition of budget motoring fun in the mid-1980s.
+          Available as a coupe or a hatchback, the lightweight rear-wheel drive-car was the definition of budget motoring fun in the mid-1980s. -->
         </p>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <!-- <ion-card>
       <img src="../../assets/imgs/toyota-ke70.JPG"/>
       <ion-card-content>
         <ion-card-title>
@@ -136,5 +137,5 @@
           on driving fun. Power comes for a 2.0-liter four-cylinder engine making 200 hp.
         </p>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 </ion-content>

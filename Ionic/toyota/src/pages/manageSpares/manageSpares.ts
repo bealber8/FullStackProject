@@ -51,5 +51,37 @@ export class ManageSparesPage {
         console.log(error);
       }
     );
+
+    this.servicio.deleteSpareSQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Spare was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
+
+    this.servicio.deleteSupSpareSQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Relationship was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
   }
 }

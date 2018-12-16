@@ -4,10 +4,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
 
 @Component({
-  selector: 'page-insertFutureModel',
-  templateUrl: 'insertFutureModel.html'
+  selector: 'page-insertMythicalModel',
+  templateUrl: 'insertMythicalModel.html'
 })
-export class InsertFutureModelPage {
+export class InsertMythicalModelPage {
   formInsert: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public fb: FormBuilder, public userService: UserServiceProvider) {
     this.formInsert = this.fb.group({
@@ -27,24 +27,19 @@ export class InsertFutureModelPage {
       cardealership_id: this.formInsert.get('cardealership_id').value
     }
     console.log(model);
-    this.userService.postFutureModelSQL(model).then(
+    this.userService.postMythicalModelSQL(model).then(
       (data) => {
         this.navParams.get("parentPage").ionViewDidLoad();
         this.navCtrl.pop();
         console.log(data);
         const toast = this.toastCtrl.create({
-          message: 'Future model was added successfully',
+          message: 'Mythical model was added successfully',
           duration: 3000
         });
         toast.present();
       },
       (error) => {
         console.log(error);
-        const toast = this.toastCtrl.create({
-          message: 'error ' + error.message,
-          duration: 3000
-        });
-        toast.present();
       }
     );
   }

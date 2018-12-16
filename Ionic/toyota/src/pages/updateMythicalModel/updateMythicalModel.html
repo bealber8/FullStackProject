@@ -4,7 +4,7 @@
             <ion-icon name="menu"></ion-icon>
           </button>
       <ion-title>
-        Update Future Model
+        Update Mythical Model
       </ion-title>
     </ion-navbar>
   </ion-header>
@@ -45,7 +45,7 @@
                 
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number"
+                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number" required
                             [(ngModel)]="model.cardealership_id" #cardealership_id="ngModel"></ion-input>
                         <div *ngIf="cardealership_id.invalid && (cardealership_id.dirty || cardealership_id.touched)" class="alert alert-danger">
                             <div *ngIf="cardealership_id.errors.required">CarDealership is required.</div>

@@ -35,6 +35,25 @@ export class UpdateSparePage {
       },
       error => console.log(error)
     );
+
+    this.userService.updateSpareSQL(form, this.spare.id).then(
+      result => {
+        // this.navParams.get("parentPage").ionViewDidLoad();
+        // this.navCtrl.pop();
+        const toast = this.toastCtrl.create({
+          message: 'Spare was updated successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      error => {
+        const toast = this.toastCtrl.create({
+          message: 'Spare not updated to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      }
+    );
   }
 
 }

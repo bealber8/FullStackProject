@@ -22,7 +22,7 @@ export class HomePage {
   }
 
   getCardealership(){
-    this.servicio.getCardealership()
+    this.servicio.getSupSpareSQL()
     .then(cardealership => {
       this.cardealership = cardealership;
     })

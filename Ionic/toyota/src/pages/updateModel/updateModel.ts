@@ -37,6 +37,25 @@ export class UpdateModelPage {
       },
       error => console.log(error)
     );
+
+    this.userService.updateModelSQL(form, this.model.id).then(
+      result => {
+        // this.navParams.get("parentPage").ionViewDidLoad();
+        // this.navCtrl.pop();
+        const toast = this.toastCtrl.create({
+          message: 'Model was updated successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      error => {
+        const toast = this.toastCtrl.create({
+          message: 'Model not updated to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      }
+    );
   }
 
 }

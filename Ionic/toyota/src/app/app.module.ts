@@ -37,6 +37,9 @@ import { UpdateSuppliersPage } from '../pages/updateSuppliers/updateSuppliers';
 import { ManageFutureModelsPage } from '../pages/manageFutureModels/manageFutureModels';
 import { InsertFutureModelPage } from '../pages/insertFutureModels/insertFutureModel';
 import { UpdateFutureModelPage } from '../pages/updateFutureModel/updateFutureModel';
+import { ManageMythicalModelsPage } from '../pages/manageMythicalModels/manageMythicalModels';
+import { InsertMythicalModelPage } from '../pages/insertMythicalModels/insertMythicalModel';
+import { UpdateMythicalModelPage } from '../pages/updateMythicalModel/updateMythicalModel';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { UpdateFutureModelPage } from '../pages/updateFutureModel/updateFutureMo
     UpdateSuppliersPage,
     ManageFutureModelsPage,
     InsertFutureModelPage,
-    UpdateFutureModelPage
+    UpdateFutureModelPage,
+    ManageMythicalModelsPage,
+    InsertMythicalModelPage,
+    UpdateMythicalModelPage
   ],
   imports: [
     BrowserModule,
@@ -107,7 +113,10 @@ import { UpdateFutureModelPage } from '../pages/updateFutureModel/updateFutureMo
     UpdateSuppliersPage,
     ManageFutureModelsPage,
     InsertFutureModelPage,
-    UpdateFutureModelPage
+    UpdateFutureModelPage,
+    ManageMythicalModelsPage,
+    InsertMythicalModelPage,
+    UpdateMythicalModelPage
   ],
   providers: [
     StatusBar,

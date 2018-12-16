@@ -51,5 +51,37 @@ export class ManageModelsPage {
         console.log(error);
       }
     );
+
+    this.servicio.deleteModelsSQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Model was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
+
+    this.servicio.deleteSupModSQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Relationship was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
   }
 }

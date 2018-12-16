@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar color = 'gray'>
     <ion-title>
-      Manage Future Models
+      Manage Mythical Models
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="insertFutureModel()">
+      <button ion-button icon-only (click)="insertMythicalModel()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -20,16 +20,14 @@
                   <ion-item text-wrap>
                     <img src="{{model.image}}">
                     <h2>{{model.name}}</h2>
-                    <p>{{model.id}}</p>
                     <p>{{model.description}}</p>
-                    <p>{{model.cardealership_id}}</p>
                   </ion-item>
                 <ion-item-options>
-                  <button ion-button color='primary' (click)='updateFutureModel(model)' icon-start>
+                  <button ion-button color='primary' (click)='updateMythicalModel(model)' icon-start>
                       <ion-icon name="create"></ion-icon>
                       Update
                   </button>
-                  <button ion-button color='danger' (click)='deleteFutureModel(model.id)' icon-start>
+                  <button ion-button color='danger' (click)='deleteMythicalModel(model.id)' icon-start>
                       <ion-icon name="trash"></ion-icon>
                       Delete
                   </button>

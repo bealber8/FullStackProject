@@ -35,6 +35,25 @@ export class UpdateAccessoryPage {
       },
       error => console.log(error)
     );
+
+    this.userService.updateAccessorySQL(form, this.accessory.id).then(
+      result => {
+        // this.navParams.get("parentPage").ionViewDidLoad();
+        // this.navCtrl.pop();
+        const toast = this.toastCtrl.create({
+          message: 'Accessory was updated successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      error => {
+        const toast = this.toastCtrl.create({
+          message: 'Accessory not updated to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      }
+    );
   }
 
 }

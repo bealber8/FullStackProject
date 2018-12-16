@@ -62,5 +62,37 @@ export class ManageAccessoriesPage {
         
       }
     );
+
+    this.servicio.deleteAccessorySQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Accessory was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
+
+    this.servicio.deleteSupAccSQL(id).then(
+      (data) =>{
+        // this.models.splice(
+        //   this.models.map(item => item.id).indexOf(id), 1)
+        // console.log(data);
+        const toast = this.toastCtrl.create({
+          message: 'Relationship was deleted successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
   }
 }

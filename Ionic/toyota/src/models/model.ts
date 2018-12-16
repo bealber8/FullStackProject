@@ -4,6 +4,8 @@ export class Model {
     power: number;
     fuel: string;
     price: number;
+    suppliers: number;
+    cardealership_id: number;
     constructor(values: Object = {}){
         Object.assign(this, values);
     }

@@ -11,21 +11,22 @@
 
 <ion-content padding>
     
-    <ion-card>
-      <img src="../../assets/imgs/toyota-camry.jpg"/>
+    <ion-card *ngFor = "let model of models">
+      <img src="{{model.image}}"/>
       <ion-card-content>
         <ion-card-title>
-          Toyota Camry
+          {{model.name}}
           </ion-card-title>
         <p text-justify>
-          The Toyota Camry is a medium-sized sedan (European D-segment) that the Japanese 
+          {{model.description}}
+          <!-- The Toyota Camry is a medium-sized sedan (European D-segment) that the Japanese 
           brand sells with great success at a global level. In fact, it usually occupies 
           the first place in the sales lists of passenger cars in the United States, 
-          where he has won a deserved reputation of reliable vehicle and robustness to all test.
+          where he has won a deserved reputation of reliable vehicle and robustness to all test. -->
         </p>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <!-- <ion-card>
       <img src="../../assets/imgs/toyota-corolla-sport-japon.jpg"/>
       <ion-card-content>
         <ion-card-title>
@@ -65,5 +66,5 @@
           under the name Celica XX in Japan and Celica Supra in the rest of the markets.
         </p>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 </ion-content>

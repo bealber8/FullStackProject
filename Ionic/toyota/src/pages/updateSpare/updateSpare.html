@@ -41,6 +41,18 @@
                             </div>
                         </ion-input>
                     </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Supplier" name="suppliers" type="number" required [(ngModel)]="spare.suppliers" #suppliers></ion-input>
+                        <div *ngIf="suppliers.invalid && (suppliers.dirty || suppliers.touched)" class="alert alert-danger">
+                            <div *ngIf="suppliers.errors.required">Supplier is required.</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number" required [(ngModel)]="spare.cardealership_id" #cardealership_id></ion-input>
+                        <div *ngIf="cardealership_id.invalid && (cardealership_id.dirty || cardealership_id.touched)" class="alert alert-danger">
+                            <div *ngIf="cardealership_id.errors.required">CarDealership is required.</div>
+                        </div>
+                    </ion-item>
                 </ion-list>
             </ion-col>
         </ion-row>

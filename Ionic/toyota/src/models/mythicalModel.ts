@@ -1,8 +1,8 @@
-export class Accessory {
+export class MythicalModel {
     id: number;
-    category: string;
     name: string;
-    suppliers: number;
+    description: string;
+    image: string;
     cardealership_id: number;
     constructor(values: Object = {}){
         Object.assign(this, values);

@@ -30,6 +30,22 @@ export class UserServiceProvider {
       })
       .then((db) => {
         this.setDatabase(db);
+        // let sqldelete = 'DROP TABLE models';
+        // this.db.executeSql(sqldelete, []);
+        // let sqdelete = 'DROP TABLE accessories';
+        // this.db.executeSql(sqdelete, []);
+        // let sql = 'DROP TABLE spares';
+        // this.db.executeSql(sql, []);
+        // let sql1 = 'DROP TABLE supp_models';
+        // this.db.executeSql(sql1, []);
+        // let sql2 = 'DROP TABLE supp_accessory';
+        // this.db.executeSql(sql2, []);
+        // let sql3 = 'DROP TABLE supp_spare';
+        // this.db.executeSql(sql3, []);
+        // let sql4 = 'DROP TABLE futuremodels';
+        // this.db.executeSql(sql4, []);
+        // let sql5 = 'DROP TABLE mythicalmodels';
+        // this.db.executeSql(sql5, []);
         this.createTables();
         this.isOpen = true;
         const toast = this.toastCtrl.create({
@@ -72,36 +88,31 @@ export class UserServiceProvider {
     this.db.executeSql(sqlCardealership, []);
     let sqlSuppliers = 'CREATE TABLE IF NOT EXISTS suppliers(id INTEGER PRIMARY KEY AUTOINCREMENT, nif TEXT, name TEXT, direction TEXT, telephone TEXT)';
     this.db.executeSql(sqlSuppliers, []);
-    let sqlModels = '(CREATE TABLE IF NOT EXISTS models(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, power INTEGER, fuel TEXT, price REAL, image TEXT, supplier_id INTEGER, ' +
-                      'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
-    this.db.executeSql(sqlModels, []);
-    let sqlAccessories = '(CREATE TABLE IF NOT EXISTS accessories(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, image TEXT, supplier_id INTEGER, ' +
-                        'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlModels = 'CREATE TABLE IF NOT EXISTS models(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, power INTEGER, fuel TEXT, price REAL, image TEXT, supplier_id INTEGER, cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE CASCADE)';
+    this.db.executeSql(sqlModels, [])
+    let sqlAccessories = 'CREATE TABLE IF NOT EXISTS accessories(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, image TEXT, supplier_id INTEGER, cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlAccessories, []);
-    let sqlSpares = '(CREATE TABLE IF NOT EXISTS spares(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, reference TEXT, image TEXT, supplier_id INTEGER, ' +
-                    'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlSpares = 'CREATE TABLE IF NOT EXISTS spares(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, name TEXT, reference TEXT, image TEXT, supplier_id INTEGER, cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlSpares, []);
-    let sqlSupp_models = '(CREATE TABLE IF NOT EXISTS supp_models(supplier_id INTEGER, model_id INTEGER, PRIMARY KEY (supplier_id, model_id), '+
-                          'FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE NO ACTION, ' +
-                          'FOREIGN KEY (model_id) REFERENCES models (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlSupp_models = 'CREATE TABLE IF NOT EXISTS supp_models(supplier_id INTEGER, model_id INTEGER, PRIMARY KEY (supplier_id, model_id), FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (model_id) REFERENCES models (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlSupp_models, []);
-    let sqlSupp_accessory = '(CREATE TABLE IF NOT EXISTS supp_accessory(supplier_id INTEGER, accessory_id INTEGER, PRIMARY KEY (supplier_id, accessory_id), '+
-                            'FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE NO ACTION, ' +
-                            'FOREIGN KEY (accessory_id) REFERENCES accessories (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlSupp_accessory = 'CREATE TABLE IF NOT EXISTS supp_accessory(supplier_id INTEGER, accessory_id INTEGER, PRIMARY KEY (supplier_id, accessory_id), FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (accessory_id) REFERENCES accessories (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlSupp_accessory, []);
-    let sqlSupp_spare = '(CREATE TABLE IF NOT EXISTS supp_spare(supplier_id INTEGER, spare_id INTEGER, PRIMARY KEY (supplier_id, spare_id), '+
-                        'FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE NO ACTION, ' +
-                        'FOREIGN KEY (spare_id) REFERENCES spares (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlSupp_spare = 'CREATE TABLE IF NOT EXISTS supp_spare(supplier_id INTEGER, spare_id INTEGER, PRIMARY KEY (supplier_id, spare_id), FOREIGN KEY (supplier_id) REFERENCES suppliers (id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (spare_id) REFERENCES spares (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlSupp_spare, []);
-    let sqlFutureModels = '(CREATE TABLE IF NOT EXISTS futuremodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, '+
-                          'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
+    let sqlFutureModels = 'CREATE TABLE IF NOT EXISTS futuremodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE CASCADE)';
     this.db.executeSql(sqlFutureModels, []);
-    let sqlMythicalModels = '(CREATE TABLE IF NOT EXISTS mythicalmodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, '+
-                        'cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE NO ACTION)';
-    this.db.executeSql(sqlMythicalModels, []);
-
-    // let sqlinsert = 'INSERT INTO prueba(direction, telephone, image) VALUES("Las Palmas", "789456123", "../../assets/imgs/1.jpg")';
-    // return this.db.executeSql(sqlinsert, []);
+    let sqlMythicalModels = 'CREATE TABLE IF NOT EXISTS mythicalmodels(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT, cardealership_id INTEGER, FOREIGN KEY (cardealership_id) REFERENCES cardealership (id) ON DELETE CASCADE ON UPDATE CASCADE)';
+    this.db.executeSql(sqlMythicalModels, [])
+    .catch(error => {
+      console.log(error);
+      console.error(error);
+      const toast = this.toastCtrl.create({
+        message: 'no furula: ' + JSON.stringify(error),
+        duration: 10000
+      });
+      toast.present();
+    });
   }
 
   getCardealership(){
@@ -175,16 +186,47 @@ export class UserServiceProvider {
 
   postModelSQL(model:any){
     let sql = 'INSERT INTO models(name, power, fuel, price, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?,?,?)';
-    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.carId]);
+    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.cardealership_id]);
   }
 
   updateModelSQL(model:any, id: number){
-    let sql = 'UPDATE models SET name=?, power=?, fuel=?, price=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
-    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.carId, id]);
+    let sql = 'UPDATE models SET name=?, power=?, fuel=?, price=?, image=?, supplier_id=?, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [model.name, model.power, model.fuel, model.price, model.image, model.suppliers, model.cardealership_id, id]);
   }
 
   deleteModelsSQL(id: any){
     let sql = 'DELETE FROM models WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  insertSupModSQL(model: any){
+    let sql = 'INSERT INTO supp_models SELECT supplier_id, id FROM models WHERE name=?';
+    return this.db.executeSql(sql, [model.name]).catch(error => {
+      console.log(error);
+      console.error(error);
+      const toast = this.toastCtrl.create({
+        message: 'no inserta relacion many: ' + JSON.stringify(error),
+        duration: 10000
+      });
+      toast.present();
+    });
+  }
+
+  getSupModeSQL(){
+    let sql = 'SELECT * FROM supp_models';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let models = [];
+      for(let index = 0; index < response.rows.length; index++){
+        models.push(response.rows.item(index));
+      }
+      return Promise.resolve(models);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  deleteSupModSQL(id: any){
+    let sql = 'DELETE FROM supp_models WHERE model_id=?';
     return this.db.executeSql(sql, [id]);
   }
 
@@ -203,16 +245,47 @@ export class UserServiceProvider {
 
   postAccessorySQL(accessory: any){
     let sql = 'INSERT INTO accessories(category, name, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?)';
-    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.carId]);
+    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.cardealership_id]);
   }
 
   updateAccessorySQL(accessory: any, id: number){
-    let sql = 'UPDATE accessories SET category=?, name=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
-    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.carId, id]);
+    let sql = 'UPDATE accessories SET category=?, name=?, image=?, supplier_id=?, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [accessory.category, accessory.name, accessory.image, accessory.suppliers, accessory.cardealership_id, id]);
   }
 
   deleteAccessorySQL(id){
     let sql = 'DELETE FROM accessories WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  insertSupAccSQL(accessory: any){
+    let sql = 'INSERT INTO supp_accessory SELECT supplier_id, id FROM accessories WHERE name=?';
+    return this.db.executeSql(sql, [accessory.name]).catch(error => {
+      console.log(error);
+      console.error(error);
+      const toast = this.toastCtrl.create({
+        message: 'no inserta relacion many: ' + JSON.stringify(error),
+        duration: 10000
+      });
+      toast.present();
+    });
+  }
+
+  getSupAccSQL(){
+    let sql = 'SELECT * FROM supp_accessory';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let models = [];
+      for(let index = 0; index < response.rows.length; index++){
+        models.push(response.rows.item(index));
+      }
+      return Promise.resolve(models);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  deleteSupAccSQL(id: any){
+    let sql = 'DELETE FROM supp_accessory WHERE accessory_id=?';
     return this.db.executeSql(sql, [id]);
   }
 
@@ -231,16 +304,47 @@ export class UserServiceProvider {
 
   postSparesSQL(spare: any){
     let sql = 'INSERT INTO spares(category, name, reference, image, supplier_id, cardealership_id) VALUES(?,?,?,?,?,?)';
-    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.carId]);
+    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.cardealership_id]);
   }
 
   updateSpareSQL(spare: any, id:number){
-    let sql = 'UPDATE spares SET category=?, name=?, reference=?, image=?, supplier_id, cardealership_id=? WHERE id=?';
-    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.carId, id]);
+    let sql = 'UPDATE spares SET category=?, name=?, reference=?, image=?, supplier_id=?, cardealership_id=? WHERE id=?';
+    return this.db.executeSql(sql, [spare.category, spare.name, spare.reference, spare.image, spare.suppliers, spare.cardealership_id, id]);
   }
 
   deleteSpareSQL(id){
     let sql = 'DELETE FROM spares WHERE id=?';
+    return this.db.executeSql(sql, [id]);
+  }
+
+  insertSupSpareSQL(spare: any){
+    let sql = 'INSERT INTO supp_spare SELECT supplier_id, id FROM spares WHERE name=?';
+    return this.db.executeSql(sql, [spare.name]).catch(error => {
+      console.log(error);
+      console.error(error);
+      const toast = this.toastCtrl.create({
+        message: 'no inserta relacion many: ' + JSON.stringify(error),
+        duration: 10000
+      });
+      toast.present();
+    });
+  }
+
+  getSupSpareSQL(){
+    let sql = 'SELECT * FROM supp_spare';
+    return this.db.executeSql(sql, [])
+    .then(response => {
+      let spares = [];
+      for(let index = 0; index < response.rows.length; index++){
+        spares.push(response.rows.item(index));
+      }
+      return Promise.resolve(spares);
+    })
+    .catch(error => Promise.reject(error));
+  }
+
+  deleteSupSpareSQL(id: any){
+    let sql = 'DELETE FROM supp_spare WHERE spare_id=?';
     return this.db.executeSql(sql, [id]);
   }
 
@@ -259,12 +363,12 @@ export class UserServiceProvider {
 
   postFutureModelSQL(model: any){
     let sql = 'INSERT INTO futuremodels(name, description, image, cardealership_id) VALUES(?,?,?,?)';
-    return this.db.executeSql(sql, [model.name, model.description, model.image, model.carId]);
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.cardealership_id]);
   }
 
   updateFutureModelSQL(model: any, id: number){
     let sql = 'UPDATE futuremodels SET name=?, description=?, image=?, cardealership_id=? WHERE id=?';
-    return this.db.executeSql(sql, [model.name, model.reference, model.image, model.carId, id]);
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.cardealership_id, id]);
   }
 
   deleteFutureModelSQL(id){
@@ -287,12 +391,12 @@ export class UserServiceProvider {
 
   postMythicalModelSQL(model: any){
     let sql = 'INSERT INTO mythicalmodels(name, description, image, cardealership_id) VALUES(?,?,?,?)';
-    return this.db.executeSql(sql, [model.name, model.description, model.image, model.carId]);
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.cardealership_id]);
   }
 
   updateMythicalModelSQL(model: any, id: number){
     let sql = 'UPDATE mythicalmodels SET name=?, description=?, image=?, cardealership_id=? WHERE id=?';
-    return this.db.executeSql(sql, [model.name, model.reference, model.image, model.carId, id]);
+    return this.db.executeSql(sql, [model.name, model.description, model.image, model.cardealership_id, id]);
   }
 
   deleteMythicalModelSQL(id){
@@ -382,29 +486,8 @@ export class UserServiceProvider {
   }
 
   getModels(){
-    // let col = ["id", "name", "power", "fuel", "price", "suppliers"];
-    // this.http.get(this.baseUrl + "/models").subscribe((data) => {
-    //   console.log(JSON.stringify(data));
-    //   this.modelos = [data];
-      
-    // });
-    //this.modelos;
     console.log(this.modelos);
-    // this.createSqlQuery("PruebaModelos", col, this.modelos);
-    // // console.log(JSON.stringify(data));
-    // // console.log("se ejecuta getAll");
-    // let sql = 'SELECT * FROM PruebaModelos';
-    // return this.db.executeSql(sql, [])
-    // .then(response => {
-    //   let models = [];
-    //   for (let index = 0; index < response.rows.length; index++) {
-    //     models.push( response.rows.item(index) );
-    //   }
-    // return Promise.resolve( models );
-    // })
-    // .catch(error => Promise.reject(error));
     return this.http.get(this.baseUrl + "/models");
-
   }
 
   // createSqlQuery(tableName: string, columns: string[], obj: any) {
@@ -470,7 +553,7 @@ export class UserServiceProvider {
     return this.http.get(this.baseUrl + "/model" + '/' +id);
   }
 
-  postModel(model){
+  postModel(model, id){
     console.log(model);
     console.log(this.username, this.password);
     let urlSearchParams = new URLSearchParams();
@@ -482,7 +565,7 @@ export class UserServiceProvider {
     let body = urlSearchParams.toString();
 
     let options = this.getOptions();
-    return this.http.post(this.baseUrl + "/model", body, options);
+    return this.http.post(this.baseUrl + "/cardealership/"+id+"/model", body, options);
   }
 
   updateModel(model:any, modelId: number): Observable<any> {
@@ -512,7 +595,7 @@ export class UserServiceProvider {
     return this.http.get(this.baseUrl + "/accessories" + '/' +id);
   }
 
-  postAccessory(accessory): Observable<any>{
+  postAccessory(accessory, id): Observable<any>{
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('category', accessory.category);
     urlSearchParams.append('name', accessory.name);
@@ -520,7 +603,7 @@ export class UserServiceProvider {
     let body = urlSearchParams.toString();
     console.log(body);
     let options = this.getOptions();
-    return this.http.post(this.baseUrl + "/accessory", body, options).pipe(
+    return this.http.post(this.baseUrl + "/cardealership/"+id+"/accessory", body, options).pipe(
       catchError(this.handleError));
   }
 
@@ -548,7 +631,7 @@ export class UserServiceProvider {
     return this.http.get(this.baseUrl + "/spares" + '/' +id);
   }
 
-  postSpares(spare): Observable<any>{
+  postSpares(spare, id): Observable<any>{
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('category', spare.category);
     urlSearchParams.append('name', spare.name);
@@ -557,7 +640,7 @@ export class UserServiceProvider {
     let body = urlSearchParams.toString();
     console.log(body);
     let options = this.getOptions();
-    return this.http.post(this.baseUrl + "/spare", body, options).pipe(
+    return this.http.post(this.baseUrl +"/cardealership/"+id+ "/spare", body, options).pipe(
       catchError(this.handleError));
   }
 

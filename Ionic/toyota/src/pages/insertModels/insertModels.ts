@@ -15,7 +15,8 @@ export class InsertModelsPage {
       power: ['', Validators.required],
       fuel: ['', Validators.compose([Validators.maxLength(45), Validators.pattern('[a-zA-Z ,]*'), Validators.required])],
       price: ['', Validators.required],
-      suppliers: ['', Validators.required]
+      suppliers: ['', Validators.required],
+      cardealership_id: ['', Validators.required]
     });
   }
   
@@ -28,8 +29,17 @@ export class InsertModelsPage {
       price: this.formInsert.get('price').value,
       suppliers: this.formInsert.get('suppliers').value
     }
+    var id = this.formInsert.get('cardealership_id').value;
+    var modelSQL = {
+      name: this.formInsert.get('name').value,
+      power: this.formInsert.get('power').value,
+      fuel: this.formInsert.get('fuel').value,
+      price: this.formInsert.get('price').value,
+      suppliers: this.formInsert.get('suppliers').value,
+      cardealership_id: this.formInsert.get('cardealership_id').value
+    }
     console.log(model);
-    this.userService.postModel(model).subscribe(
+    this.userService.postModel(model, id).subscribe(
       (data) => {
         this.navParams.get("parentPage").ionViewDidLoad();
         this.navCtrl.pop();
@@ -37,6 +47,39 @@ export class InsertModelsPage {
         
         const toast = this.toastCtrl.create({
           message: 'Model was added successfully',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.userService.postModelSQL(modelSQL).then(
+      (data) => {
+        this.navParams.get("parentPage").ionViewDidLoad();
+        this.navCtrl.pop();
+        console.log(data);
+        
+        const toast = this.toastCtrl.create({
+          message: 'Model was added successfully to SQLite db',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    this.userService.insertSupModSQL(modelSQL).then(
+      (data) => {
+        // this.navParams.get("parentPage").ionViewDidLoad();
+        // this.navCtrl.pop();
+        // console.log(data);
+        
+        const toast = this.toastCtrl.create({
+          message: 'Relationship was added successfully to SQLite db',
           duration: 3000
         });
         toast.present();
