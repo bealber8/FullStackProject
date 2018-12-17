@@ -105,29 +105,6 @@ public class Suppliers implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public Set<Model> getModels() {
-		return models;
-	}
-
-	public void setModels(Set<Model> models) {
-		this.models = models;
-	}
-
-	public Set<Accessories> getAccessories() {
-		return accessories;
-	}
-
-	public void setAccessories(Set<Accessories> accessories) {
-		this.accessories = accessories;
-	}
-
-	public Set<Spares> getSpares() {
-		return spares;
-	}
-
-	public void setSpares(Set<Spares> spares) {
-		this.spares = spares;
-	}
 
 	public Suppliers() {
 		super();

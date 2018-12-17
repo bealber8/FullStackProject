@@ -26,12 +26,12 @@ public class JpaUserDetailsService implements UserDetailsService {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		AppUser appUser = userDao.findUserByName(name);
+		AppUser appUser = userDao.findUserByUsername(username);
 		
 		if(appUser == null) {
-			throw new UsernameNotFoundException("User " + name + " doesn't exist");
+			throw new UsernameNotFoundException("User " + username + " doesn't exist");
 		}
 		
 		List<GrantedAuthority> authorities = new ArrayList<>();
@@ -42,12 +42,12 @@ public class JpaUserDetailsService implements UserDetailsService {
 		}
 		
 		if(authorities.isEmpty()) {
-			throw new UsernameNotFoundException("User " + name + " doesn't have any assigned role");
+			throw new UsernameNotFoundException("User " + username + " doesn't have any assigned role");
 		}
 		
 		
 		
-		return new User(appUser.getName(), appUser.getPassword(), true, true, true, true, authorities);
+		return new User(appUser.getUsername(), appUser.getPassword(), true, true, true, true, authorities);
 	}
 
 }

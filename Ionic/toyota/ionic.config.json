@@ -1,0 +1,7 @@
+{
+  "name": "toyota",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

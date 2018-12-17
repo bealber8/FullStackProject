@@ -28,6 +28,11 @@ public class AccessoriesController {
 		return modelService.getAllAccessories();
 	}
 	
+	@GetMapping("/cardealership/{carDealershipId}/accessories")
+	public List<Accessories> getAllAccessoriesByCarDealershipId(@PathVariable (value = "carDealershipId") long carDealershipId){
+		return modelService.getAllAccessoriesByCarDealershipId(carDealershipId);
+	}
+	
 	@GetMapping("/accessories/{id}")
 	public ResponseEntity<Accessories> getOneAccessory(@PathVariable(value = "id")long id){
 		try {
@@ -47,6 +52,11 @@ public class AccessoriesController {
 	@PostMapping("/accessory")
 	public void add(Accessories accessory) {
 		modelService.post(accessory);
+	}
+	
+	@PostMapping("/cardealership/{carDealershipId}/accessory")
+	public void save(Accessories accessory, @PathVariable (value = "carDealershipId") Long carDealershipId) {
+		modelService.saveAccessoryInCarDealershipByCarDealershipId(accessory, carDealershipId);
 	}
 	
 	@PutMapping("/accessory/{id}")

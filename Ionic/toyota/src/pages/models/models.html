@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Models
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+                <!-- <ion-item *ngIf="models.length == 0"> 
+                    Empty - Vacío
+                  </ion-item> -->
+              <ion-item *ngFor = "let model of models; let i = index">
+                <!-- <img src="../../assets/imgs/{{i + 1}}.jpg"> -->
+                <h1>Model: {{model.name}}</h1>
+                <h2>Power: {{model.power}}</h2>
+                <!-- <h2>Fuel: {{model.fuel}}</h2> -->
+                <h2>Price: {{model.price}}</h2>
+                <img src="{{model.fuel}}">
+                <!-- <ion-thumbnail item-right>
+                  <img src="../../assets/imgs/{{i + 1}}.jpg">
+              </ion-thumbnail> -->
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+</ion-content>

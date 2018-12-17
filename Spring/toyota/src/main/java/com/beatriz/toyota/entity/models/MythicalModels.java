@@ -2,6 +2,7 @@ package com.beatriz.toyota.entity.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.Type;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = {"http://localhost:8080" , "*"})
@@ -31,8 +33,12 @@ public class MythicalModels implements Serializable{
 	@NotEmpty
 	private String description;
 	
+	@Column(name = "image")
+	@Type(type = "org.hibernate.type.BinaryType")
+	private byte[] image;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="carDealership_id", nullable = false)
+	@JoinColumn(name="car_dealership_id", nullable = false)
 	private CarDealership cardealership;
 
 	public long getId() {
@@ -57,6 +63,14 @@ public class MythicalModels implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public MythicalModels() {

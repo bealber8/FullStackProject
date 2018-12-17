@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "toyota_users")
@@ -26,21 +25,30 @@ public class AppUser implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
+	@NotEmpty
 	private String name;
 
+	@NotEmpty
 	private String surname;
 	
+	@NotNull
 	private int age;
+	
+	@NotEmpty
+	private String telephone;
 
+	@NotEmpty
 	private String email;
 	
+	@NotEmpty
+	private String username;
+	
+	@NotEmpty
 	private String password;
 	
-	private String telephone;
-	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="carDealership_id", nullable = false)
+	@JoinColumn(name="car_dealership_id", nullable = false)
 	private CarDealership cardealership;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -61,6 +69,14 @@ public class AppUser implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public List<Role> getRoles() {
@@ -111,15 +127,18 @@ public class AppUser implements Serializable{
 		this.email = email;
 	}
 
-	public AppUser(@NotEmpty String name, @NotEmpty String surname, @NotEmpty int age,
-			@NotEmpty String email, @NotEmpty String password, @NotEmpty String telephone) {
+	public AppUser(long id, String name, String surname, int age, String telephone, String email, String username, String password,
+			 List<Role> roles) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
-		this.email = email;
-		this.password = password;
 		this.telephone = telephone;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
 	}
 
 	public AppUser() {

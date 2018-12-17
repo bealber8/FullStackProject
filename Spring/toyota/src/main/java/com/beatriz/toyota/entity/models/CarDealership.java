@@ -1,14 +1,13 @@
 package com.beatriz.toyota.entity.models;
 
+
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -54,10 +53,17 @@ public class CarDealership implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public CarDealership(@NotEmpty String direction, @NotEmpty String telephone) {
+	
+
+	public CarDealership(long id, @NotEmpty String direction, @NotEmpty String telephone) {
 		super();
+		this.id = id;
 		this.direction = direction;
 		this.telephone = telephone;
+	}
+
+	public CarDealership() {
+		super();
 	}
 	
 	

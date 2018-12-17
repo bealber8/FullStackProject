@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color = 'danger'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Toyota
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12 align-self-center><img src="../../assets/imgs/logo-toyota-256x256.png"/></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h2 class="slogan">"Oh, what a feeling!"</h2>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list>
+      <ion-item *ngFor="let car of cardealership; let i = index">
+        <p>{{car.supplier_id}}</p>
+        <p>{{car.spare_id}}</p>
+        <!-- <img src="{{car.image}}"> -->
+      </ion-item>
+    </ion-list>
+</ion-content>
+
+
+<!-- <ion-tabs>
+    <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+  </ion-tabs> -->

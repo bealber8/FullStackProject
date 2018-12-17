@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Insert Supplier
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <form [formGroup] = "formInsert" (ngSubmit)="postSupplier()" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Nif:</ion-label>
+                <ion-input formControlName="nif" type="text" placeholder="nif"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('nif').errors && formInsert.get('nif').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('nif').hasError('maxLength')">Max of 15 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('nif').hasError('pattern')">It is not a correct nif</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('nif').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Name:</ion-label>
+                <ion-input formControlName="name" type="text" placeholder="name"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('name').errors && formInsert.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('maxLength')">Max of 45 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('pattern')">It is not a correct name</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Direction:</ion-label>
+                <ion-input formControlName="direction" type = "text" placeholder = "direction"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('direction').errors && formInsert.get('direction').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('maxLength')">Max of 100 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('pattern')">It is not a correct direction</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Telephone:</ion-label>
+                <ion-input formControlName="telephone" type = "text" placeholder = "telephone"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('telephone').errors && formInsert.get('telephone').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('maxLength')">Max of 20 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('pattern')">It is not a correct telephone</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('required')">Field is required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formInsert.invalid">Save Supplier</button>
+          </div>
+      </form>
+  </ion-content>
+

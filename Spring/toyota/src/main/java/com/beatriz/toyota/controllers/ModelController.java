@@ -28,30 +28,31 @@ public class ModelController {
 	@Autowired
 	IModelService modelService;
 	
-	@GetMapping("/users")
-	public List<AppUser> getAllUsers(){
-		return modelService.getAllUsers();
-	}
-	
 	@GetMapping("/models")
 	public List<Model> getAllModels(){
 		System.out.println("llegó a models");
 		return modelService.getAllModels();
 	}
 	
+	@GetMapping("/cardealership/{carDealershipId}/models")
+	public List<Model> getAllModelsByCarDealersId(@PathVariable (value = "carDealershipId") Long carDealershipId){
+		return modelService.getAllModelsByCarDealersId(carDealershipId);
+	}
+	
 	@GetMapping("/model/{id}")
 	public ResponseEntity<Model> getOne(@PathVariable(value = "id")long id){
-		try {
+		//try {
             Model model = modelService.getModel(id);
             if (model != null) {
                 return ResponseEntity.status(HttpStatus.OK).body(model);
             } else {
+            	System.out.println("Model with id " +id+" not found");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-
+/*
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        }*/
 		
 	}
 	
@@ -59,6 +60,11 @@ public class ModelController {
 	public void add(Model model) {
 		System.out.println("llegó al post de models");
 		modelService.post(model);
+	}
+	
+	@PostMapping("/cardealership/{carDealershipId}/model")
+	public void save(Model model, @PathVariable (value = "carDealershipId") Long carDealershipId) {
+		modelService.saveModelInCarDealershipByCarDealershipId(model, carDealershipId);
 	}
 	
 	@PutMapping("/model/{id}")
@@ -72,68 +78,4 @@ public class ModelController {
 		modelService.deleteModel(id);
 	}
 	
-	
-	
-	@GetMapping("/spares")
-	public List<Spares> getAllSpares(){
-		return modelService.getAllSpares();
-	}
-	
-	@GetMapping("/spares/{id}")
-	public ResponseEntity<Spares> getOneSpare(@PathVariable(value = "id")long id){
-		try {
-			Spares spare = modelService.getSpare(id);
-            if (spare != null) {
-                return ResponseEntity.status(HttpStatus.OK).body(spare);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-		
-	}
-	
-	@PostMapping("/spare")
-	public void add(Spares spare) {
-		modelService.post(spare);
-	}
-	
-	@PutMapping("/spare/{id}")
-	public void update(Spares spare, @PathVariable(value = "id") long id) {
-		modelService.put(spare, id);
-	}
-	
-	@DeleteMapping("/spare/{id}")
-	public void updateSpares(@PathVariable(value = "id") long id) {
-		modelService.deleteSpares(id);
-	}
-	
-	
-	@GetMapping("/suppliers")
-	public List<Suppliers> getAllSuppliers(){
-		return modelService.getAllSuppliers();
-	}
-	
-	@GetMapping("/suppliers/{id}")
-	public ResponseEntity<Suppliers> getOneSuppliers(@PathVariable(value = "id")long id){
-		try {
-			Suppliers model = modelService.getSuppliers(id);
-            if (model != null) {
-                return ResponseEntity.status(HttpStatus.OK).body(model);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-		
-	}
-	
-	@PostMapping("/supplier")
-	public void add(Suppliers model) {
-		modelService.post(model);
-	}
 }
