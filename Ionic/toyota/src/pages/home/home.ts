@@ -17,19 +17,19 @@ export class HomePage {
 
   }
 
-  ionViewDidLoad(){
-    this.getCardealership();
-  }
+  // ionViewDidLoad(){
+  //   this.getCardealership();
+  // }
 
-  getCardealership(){
-    this.servicio.getSupSpareSQL()
-    .then(cardealership => {
-      this.cardealership = cardealership;
-    })
-    .catch(error => {
-      console.error(error);
-    })
-  }
+  // getCardealership(){
+  //   this.servicio.getSupSpareSQL()
+  //   .then(cardealership => {
+  //     this.cardealership = cardealership;
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   })
+  // }
   
   // ionViewDidLoad() {
   //   let openTab = this.navParams.get('openTab');

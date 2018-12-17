@@ -26,7 +26,6 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 import { FutureModelsPage } from '../pages/futureModels/futureModels';
 import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
 import {SparesPage} from '../pages/spares/spares';
-import { FuturePage } from '../pages/future/future';
 import { SQLite } from '@ionic-native/sqlite';
 import { InsertCardealershipPage } from '../pages/insertCardealership/insertCardealership';
 import { ManageCardealershipPage } from '../pages/manageCardealership/manageCardealership';
@@ -64,7 +63,6 @@ import { Facebook } from '@ionic-native/facebook';
     UpdateSparePage,
     TabsPage,
     SparesPage,
-    FuturePage,
     InsertCardealershipPage,
     ManageCardealershipPage,
     UpdateCardealershipPage,
@@ -105,7 +103,6 @@ import { Facebook } from '@ionic-native/facebook';
     UpdateSparePage,
     TabsPage,
     SparesPage,
-    FuturePage,
     InsertCardealershipPage,
     ManageCardealershipPage,
     UpdateCardealershipPage,

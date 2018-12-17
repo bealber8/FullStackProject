@@ -13,7 +13,6 @@ import { MythicalModelsPage } from '../pages/mythicalModels/mythicalModels';
 import { TabsPage } from '../pages/tabs/tabs';
 import {UserServiceProvider} from '../providers/user-service/user-service';
 import {SparesPage} from '../pages/spares/spares';
-import { FuturePage } from '../pages/future/future';
 @Component({
   templateUrl: 'app.html'
 })
@@ -35,7 +34,6 @@ export class MyApp {
       {title: 'Accessories', component: AccessoriesPage},
       {title: 'Spares', component: SparesPage},
       {title: 'Manage App', component: ManageAppPage},
-      {title: 'Future Models', component: FuturePage},
       {title: 'Future Models', component: FutureModelsPage},
       {title: 'Mythical Models', component: MythicalModelsPage}
     ];

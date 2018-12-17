@@ -49,6 +49,11 @@ export class ManageModelsPage {
       },
       (error) =>{
         console.log(error);
+        const toast = this.toastCtrl.create({
+          message: error.message,
+          duration: 3000
+        });
+        toast.present();
       }
     );
 
