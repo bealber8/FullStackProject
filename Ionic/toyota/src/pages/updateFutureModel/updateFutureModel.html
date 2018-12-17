@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Future Model
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form #modelForm = "ngForm" (ngSubmit)="updateModel(modelForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" pattern="[a-zA-Z0-9- ]*" [(ngModel)]="model.name"
+                            #name="ngModel">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                                <div *ngIf="name.errors.required">Name is required.</div>
+                                <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                                <div *ngIf="name.errors.pattern">It is not a correct accessory</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-textarea placeholder="Description" name="description" required minlength="4" pattern="[a-zA-Z()-,.' ]*"
+                            [(ngModel)]="model.description" #description="ngModel"></ion-textarea>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+                            <div *ngIf="description.errors.required">Description is required.</div>
+                            <div *ngIf="description.errors.minlength">Description must be at least 4 characters long.</div>
+                            <div *ngIf="description.errors.pattern">It is not a correct description</div>
+                        </div>
+                
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Image" name="image" type="text" required minlength="4" pattern="[a-zA-Z0-9.-/ ]*"
+                            [(ngModel)]="model.image" #image="ngModel"></ion-input>
+                        <div *ngIf="image.invalid && (image.dirty || image.touched)" class="alert alert-danger">
+                            <div *ngIf="image.errors.required">Image is required.</div>
+                            <div *ngIf="image.errors.minlength">Image must be at least 4 characters long.</div>
+                            <div *ngIf="image.errors.pattern">It is not a correct image</div>
+                        </div>
+                
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number"
+                            [(ngModel)]="model.cardealership_id" #cardealership_id="ngModel"></ion-input>
+                        <div *ngIf="cardealership_id.invalid && (cardealership_id.dirty || cardealership_id.touched)" class="alert alert-danger">
+                            <div *ngIf="cardealership_id.errors.required">CarDealership is required.</div>
+                        </div>
+                
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="gray" full type="submit" [disabled]="!modelForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+    </form>
+  </ion-content>

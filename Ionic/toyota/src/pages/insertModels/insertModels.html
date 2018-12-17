@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar color='danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            Insert Models
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="formInsert" (ngSubmit)="postModel()" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Name:</ion-label>
+                <ion-input formControlName="name" type="text" placeholder="name"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('name').errors && formInsert.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('maxLength')">Max of 50 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('pattern')">It is not a correct name</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('name').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Power:</ion-label>
+                <ion-input formControlName="power" type="number" placeholder="power"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('power').errors && formInsert.get('power').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('power').hasError('pattern')">It is not a correct
+                    power</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('power').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Fuel:</ion-label>
+                <ion-input formControlName="fuel" type="text" placeholder="fuel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('fuel').errors && formInsert.get('fuel').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('maxLength')">Max of 45 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('pattern')">It is not a correct fuel</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('fuel').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Price:</ion-label>
+                <ion-input formControlName="price" type="number" placeholder="price"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('price').errors && formInsert.get('price').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('price').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Suppliers:</ion-label>
+                <ion-input formControlName="suppliers" type="number" placeholder="Suppliers"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('suppliers').errors && formInsert.get('suppliers').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('suppliers').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>CarDealership ID:</ion-label>
+                <ion-input formControlName="cardealership_id" type="number" placeholder="CarDealership"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('cardealership_id').errors && formInsert.get('cardealership_id').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('cardealership_id').hasError('required')">Field is
+                    required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formInsert.invalid">Save
+                Model</button>
+        </div>
+    </form>
+</ion-content>

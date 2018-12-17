@@ -1,0 +1,104 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Models
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form #modelForm = "ngForm" (ngSubmit)="updateModel(modelForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" pattern="[a-zA-Z0-9 ]*" [(ngModel)]="model.name" #name="ngModel">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                            <div *ngIf="name.errors.required">Name is required.</div>
+                            <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                            <div *ngIf="name.errors.pattern">It is not a correct model</div>
+                        </div>
+                    </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Power" name="power" type="number" required pattern="[0-9]*" [(ngModel)]="model.power" #power></ion-input>
+                        <div *ngIf="power.invalid && (power.dirty || power.touched)" class="alert alert-danger">
+                            <div *ngIf="power.errors.required">Power is required.</div>
+                            <div *ngIf="power.errors.minlength">Power must be at least 4 characters long.</div>
+                            <div *ngIf="power.errors.pattern">It is not a correct power</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Fuel" name="fuel" type="text" required pattern="[a-zA-Z ,]*" [(ngModel)]="model.fuel" #fuel></ion-input>
+                        <div *ngIf="fuel.invalid && (fuel.dirty || fuel.touched)" class="alert alert-danger">
+                            <div *ngIf="fuel.errors.required">Fuel is required.</div>
+                            <div *ngIf="fuel.errors.minlength">Fuel must be at least 4 characters long.</div>
+                            <div *ngIf="fuel.errors.pattern">It is not a correct fuel</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Price" name="price" type="text" required pattern="[0-9]*" [(ngModel)]="model.price" #price></ion-input>
+                        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                            <div *ngIf="price.errors.required">Price is required.</div>
+                            <div *ngIf="price.errors.minlength">Price must be at least 4 characters long.</div>
+                            <div *ngIf="price.errors.pattern">It is not a correct price</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Supplier" name="suppliers" type="number" required [(ngModel)]="model.suppliers" #suppliers></ion-input>
+                        <div *ngIf="suppliers.invalid && (suppliers.dirty || suppliers.touched)" class="alert alert-danger">
+                            <div *ngIf="suppliers.errors.required">Supplier is required.</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number" required [(ngModel)]="model.cardealership_id" #cardealership_id></ion-input>
+                        <div *ngIf="cardealership_id.invalid && (cardealership_id.dirty || cardealership_id.touched)" class="alert alert-danger">
+                            <div *ngIf="cardealership_id.errors.required">CarDealership is required.</div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="gray" full type="submit" [disabled]="!modelForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-list >
+            <ion-item >
+                <ion-label stacked>Name:</ion-label>
+                <ion-input formControlName="name" type = "text" placeholder = "name"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('name').errors && formUpdate.get('name').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('name').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Power:</ion-label>
+                <ion-input formControlName="power" type = "text" placeholder = "power"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('power').errors && formUpdate.get('power').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('power').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Fuel:</ion-label>
+                <ion-input formControlName="fuel" type = "text" placeholder = "fuel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('fuel').errors && formUpdate.get('fuel').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('fuel').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Price:</ion-label>
+                <ion-input formControlName="price" type = "text" placeholder = "price"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formUpdate.get('price').errors && formUpdate.get('price').dirty">
+                <p color="danger" ion-text *ngIf="formUpdate.get('price').hasError('required')">Field is required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonUpdate' ion-button color = 'gray' block type="submit" [disabled]="formUpdate.invalid">Save Model</button>
+          </div> -->
+      </form>
+  </ion-content>

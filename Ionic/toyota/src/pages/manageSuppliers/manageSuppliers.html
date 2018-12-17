@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color = 'gray'>
+    <ion-title>
+      Manage Suppliers
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="insertSupplier()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item-sliding *ngFor = "let supplier of suppliers">
+                  <ion-item text-wrap>
+                <h2>{{supplier.nif}}</h2>
+                <p>{{supplier.name}}</p>
+                <p>{{supplier.direction}}</p>
+                <p>{{supplier.telephone}}</p>
+                </ion-item>
+                <ion-item-options>
+                  <button ion-button color='primary' (click)='updateSupplier(supplier)' icon-start>
+                      <ion-icon name="create"></ion-icon>
+                      Update
+                  </button>
+                  <button ion-button color='danger' (click)='deleteSupplier(supplier.id)' icon-start>
+                      <ion-icon name="trash"></ion-icon>
+                      Delete
+                  </button>
+              </ion-item-options>
+            </ion-item-sliding>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+</ion-content>

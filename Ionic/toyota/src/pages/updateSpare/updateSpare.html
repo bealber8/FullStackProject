@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Update Spare
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <form #spareForm = "ngForm" (ngSubmit)="updateSpare(spareForm.value)" novalidate>
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-input placeholder="Category" name="category" type="text" required minlength="4" pattern="[a-zA-Z ]*" [(ngModel)]="spare.category" #category="ngModel">
+                            <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
+                                <div *ngIf="category.errors.required">Category is required.</div>
+                                <div *ngIf="category.errors.minlength">Category must be at least 4 characters long.</div>
+                                <div *ngIf="category.errors.pattern">It is not a correct category</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Name" name="name" type="text" required minlength="4" pattern="[a-zA-Z ]*" [(ngModel)]="spare.name" #name="ngModel">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                                <div *ngIf="name.errors.required">Name is required.</div>
+                                <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
+                                <div *ngIf="name.errors.pattern">It is not a correct spare</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Reference" name="reference" type="text" required minlength="4" pattern="[a-zA-Z0-9]*" [(ngModel)]="spare.reference" #reference="ngModel">
+                            <div *ngIf="reference.invalid && (reference.dirty || reference.touched)" class="alert alert-danger">
+                                <div *ngIf="reference.errors.required">Reference is required.</div>
+                                <div *ngIf="reference.errors.minlength">Reference must be at least 4 characters long.</div>
+                                <div *ngIf="reference.errors.pattern">It is not a correct reference</div>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Supplier" name="suppliers" type="number" required [(ngModel)]="spare.suppliers" #suppliers></ion-input>
+                        <div *ngIf="suppliers.invalid && (suppliers.dirty || suppliers.touched)" class="alert alert-danger">
+                            <div *ngIf="suppliers.errors.required">Supplier is required.</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="CarDealership" name="cardealership_id" type="number" required [(ngModel)]="spare.cardealership_id" #cardealership_id></ion-input>
+                        <div *ngIf="cardealership_id.invalid && (cardealership_id.dirty || cardealership_id.touched)" class="alert alert-danger">
+                            <div *ngIf="cardealership_id.errors.required">CarDealership is required.</div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="gray" full type="submit" [disabled]="!spareForm.form.valid">Save</button>
+            </ion-col>
+        </ion-row>
+    </form>
+  </ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color = 'danger'>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+        Insert Car Dealership
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <form [formGroup] = "formInsert" (ngSubmit)="postCar()" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Direction:</ion-label>
+                <ion-input formControlName="direction" type = "text" placeholder = "direction"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('direction').errors && formInsert.get('direction').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('maxLength')">Max of 45 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('pattern')">It is not a correct category</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('direction').hasError('required')">Field is required</p>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Telephone:</ion-label>
+                <ion-input formControlName="telephone" type = "text" placeholder = "telephone"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="formInsert.get('telephone').errors && formInsert.get('telephone').dirty">
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('maxLength')">Max of 60 characters</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('pattern')">It is not a correct accessory</p>
+                <p color="danger" ion-text *ngIf="formInsert.get('telephone').hasError('required')">Field is required</p>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button id='buttonInsert' color='gray' ion-button block type="submit" [disabled]="formInsert.invalid">Save Car Dealership</button>
+          </div>
+      </form>
+  </ion-content>
+

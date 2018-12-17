@@ -14,9 +14,10 @@ class Users(models.Model):
     name = fields.Char()
     surname = fields.Char()
     age = fields.Integer()
-    email = fields.Char()
-    password = fields.Char()
     telephone = fields.Char()
+    email = fields.Char()
+    username = fields.Char()
+    password = fields.Char()
     car_dealership_id = fields.Many2one('toyota.cardealership', string="Car Dealership")
 
 class Suppliers(models.Model):
@@ -63,7 +64,7 @@ class FutureModels(models.Model):
     name = fields.Char()
     description = fields.Text()
     car_dealership_id = fields.Many2one('toyota.cardealership', string="Car Dealership")
-    image = fields.Binary(string = "Upload model")
+    image = fields.Binary(string = "Image")
 
 class MythicalModels(models.Model):
     _name = 'toyota.mythicalmodels'
@@ -71,7 +72,7 @@ class MythicalModels(models.Model):
     name = fields.Char()
     description = fields.Text()
     car_dealership_id = fields.Many2one('toyota.cardealership', string="Car Dealership")
-    image = fields.Binary(string = "Upload model")
+    image = fields.Binary(string = "Image")
 
 
 class Roles(models.Model):
