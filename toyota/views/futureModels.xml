@@ -10,6 +10,7 @@
           <field name="name"/>
           <field name="description"/>
           <field name="car_dealership_id"/>
+          <field name="image" widget="image"/>
         </tree>
       </field>
     </record>
@@ -38,7 +39,7 @@
         </field>
     </record>
 
-    <record id='fleet_vehicle_view_kanban' model='ir.ui.view'>
+    <!-- <record id='fleet_vehicle_view_kanban' model='ir.ui.view'>
         <field name="name">fleet.vehicle.kanban</field>
         <field name="model">toyota.futuremodels</field>
         <field name="arch" type="xml">
@@ -46,7 +47,7 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="car_dealership_id"/>
-                <field name="image" />
+                <field name="image" widget="image"/>
           
                 <templates>
                     <t t-name="kanban-box">
@@ -68,7 +69,7 @@
                 </templates>
             </kanban>
         </field>
-    </record>
+    </record> -->
    
 
     <!-- actions opening views on models -->
@@ -77,7 +78,7 @@
       <field name="name">Future Models window</field>
       <field name="res_model">toyota.futuremodels</field>
       <field name="view_type">form</field>
-      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_mode">tree,form</field>
     </record>
    
 

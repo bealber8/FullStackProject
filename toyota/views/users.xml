@@ -10,9 +10,10 @@
           <field name="name"/>
           <field name="surname"/>
           <field name="age"/>
-          <field name="email"/>
-          <field name="password"/>
           <field name="telephone"/>
+          <field name="email"/>
+          <field name="username"/>
+          <field name="password"/>
           <field name="car_dealership_id"/>
         </tree>
       </field>
