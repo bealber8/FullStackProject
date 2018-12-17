@@ -65,6 +65,7 @@ export class UserServiceProvider {
       })
     }
   }
+  
 
   // async checkLogin(){
   //   const response = await fetch('http://192.168.56.1:8080/authenticate', {credentials: 'include'});

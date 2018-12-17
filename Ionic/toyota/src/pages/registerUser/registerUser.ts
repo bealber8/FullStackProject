@@ -18,7 +18,7 @@ export class RegisterUserPage {
       surname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Záéíóú ]*'), Validators.required])],
       age: ['', Validators.compose([ AgeValidator.isValid, Validators.required])],
       telephone: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
-      email: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
+      email: ['', Validators.compose([Validators.maxLength(100), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       username: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       password: ['', Validators.compose([Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
     });

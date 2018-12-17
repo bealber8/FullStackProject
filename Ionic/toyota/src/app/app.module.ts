@@ -40,6 +40,7 @@ import { UpdateFutureModelPage } from '../pages/updateFutureModel/updateFutureMo
 import { ManageMythicalModelsPage } from '../pages/manageMythicalModels/manageMythicalModels';
 import { InsertMythicalModelPage } from '../pages/insertMythicalModels/insertMythicalModel';
 import { UpdateMythicalModelPage } from '../pages/updateMythicalModel/updateMythicalModel';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { UpdateMythicalModelPage } from '../pages/updateMythicalModel/updateMyth
     StatusBar,
     SplashScreen,
     SQLite,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider
   ]

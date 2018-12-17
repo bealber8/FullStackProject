@@ -55,39 +55,39 @@ export class InsertModelsPage {
         console.log(error);
       }
     );
-    this.userService.postModelSQL(modelSQL).then(
-      (data) => {
-        this.navParams.get("parentPage").ionViewDidLoad();
-        this.navCtrl.pop();
-        console.log(data);
+    // this.userService.postModelSQL(modelSQL).then(
+    //   (data) => {
+    //     this.navParams.get("parentPage").ionViewDidLoad();
+    //     this.navCtrl.pop();
+    //     console.log(data);
         
-        const toast = this.toastCtrl.create({
-          message: 'Model was added successfully to SQLite db',
-          duration: 3000
-        });
-        toast.present();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    //     const toast = this.toastCtrl.create({
+    //       message: 'Model was added successfully to SQLite db',
+    //       duration: 3000
+    //     });
+    //     toast.present();
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
 
-    this.userService.insertSupModSQL(modelSQL).then(
-      (data) => {
-        // this.navParams.get("parentPage").ionViewDidLoad();
-        // this.navCtrl.pop();
-        // console.log(data);
+    // this.userService.insertSupModSQL(modelSQL).then(
+    //   (data) => {
+    //     // this.navParams.get("parentPage").ionViewDidLoad();
+    //     // this.navCtrl.pop();
+    //     // console.log(data);
         
-        const toast = this.toastCtrl.create({
-          message: 'Relationship was added successfully to SQLite db',
-          duration: 3000
-        });
-        toast.present();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    //     const toast = this.toastCtrl.create({
+    //       message: 'Relationship was added successfully to SQLite db',
+    //       duration: 3000
+    //     });
+    //     toast.present();
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
 }
