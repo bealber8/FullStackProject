@@ -23,6 +23,11 @@ export class ManageSparesPage {
       },
       (error) => {
         console.error(error);
+        const toast = this.toastCtrl.create({
+          message: 'Error: no puede acceder al servidor, no dispone de conexión a internet',
+          duration: 10000
+        });
+        toast.present();
       }
     )
   }

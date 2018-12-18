@@ -19,7 +19,7 @@ export class ModelsPage {
         this.models = data;
         console.log(data);
         const toast = this.toastCtrl.create({
-          message: 'funcionó',
+          message: 'Welcome',
           duration: 3000
         });
         toast.present();
@@ -27,7 +27,7 @@ export class ModelsPage {
       (error) => {
         console.error(error);
         const toast = this.toastCtrl.create({
-          message: 'esto va de culo '+ error.message,
+          message: 'Error: no puede acceder al servidor, no dispone de conexión a internet',
           duration: 10000
         });
         toast.present();

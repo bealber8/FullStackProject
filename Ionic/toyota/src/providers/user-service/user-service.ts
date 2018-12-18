@@ -15,7 +15,7 @@ export class UserServiceProvider {
   username: any;
   password: any;
   authorities = new ReplaySubject<string[]>(1);
-  baseUrl = 'http://192.168.1.41:8080';
+  baseUrl = 'http://192.168.43.182:8080';
   db: SQLiteObject = null;
   modelos: any[] = [];
   generatedSqlQuery: string;

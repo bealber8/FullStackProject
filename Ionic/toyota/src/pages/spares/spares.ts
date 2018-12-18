@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { UserServiceProvider} from '../../providers/user-service/user-service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserServiceProvider} from '../../providers/user-service/user-service';
 export class SparesPage {
   spares: any;
   
-  constructor(public navCtrl: NavController, public servicio: UserServiceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public servicio: UserServiceProvider) {
     
   }
 
@@ -20,6 +20,11 @@ export class SparesPage {
       },
       (error) => {
         console.error(error);
+        const toast = this.toastCtrl.create({
+          message: 'Error: no puede acceder al servidor, no dispone de conexión a internet',
+          duration: 10000
+        });
+        toast.present();
       }
     )
   }

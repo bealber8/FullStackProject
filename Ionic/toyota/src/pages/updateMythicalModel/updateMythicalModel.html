@@ -25,7 +25,7 @@
                         </ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-textarea placeholder="Description" name="description" required minlength="4" pattern="[a-zA-Z()-,.' ]*"
+                        <ion-textarea placeholder="Description" name="description" required minlength="4" pattern="[a-zA-Z0-9()-,.' ]*"
                             [(ngModel)]="model.description" #description="ngModel"></ion-textarea>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
                             <div *ngIf="description.errors.required">Description is required.</div>
